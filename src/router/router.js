@@ -9,6 +9,7 @@ const stopRecord = r => require.ensure([], () => r(require('../page/stopRecord/s
 const contact = r => require.ensure([], () => r(require('../page/contact/contact')), 'contact')
 const help = r => require.ensure([], () => r(require('../page/help/help')), 'help')
 const stopCar = r => require.ensure([], () => r(require('../page/stopCar/stopCar')), 'stopCar')
+const getLocation = r => require.ensure([], () => r(require('../page/getLocation/getLocation')), 'getLocation')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
 
 
@@ -58,6 +59,16 @@ export default [{
             meta: {
                 title: '账户信息',
                 auth: 'account',
+                hideBack: true,
+                keepAlive: true,
+            },
+        },
+        {
+            path: 'getLocation',
+            component: getLocation,
+            meta: {
+                title: 'getLocation',
+                auth: 'getLocation',
                 hideBack: true,
                 keepAlive: true,
             },
