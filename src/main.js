@@ -10,7 +10,7 @@ import FastClick from 'fastclick'
 import {mapState, mapMutations} from 'vuex'
 import {setStore, getStore, removeStore} from './config/mUtils'
 // import {Loading} from './config/mixin'
-import AMap from 'vue-amap'
+import VueAMap  from 'vue-amap'
 
 
 
@@ -43,10 +43,11 @@ Vue.use(AlertPlugin)
 Vue.use(ConfirmPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(VueScroller)
-Vue.use(AMap)
-AMap.initAMapApiLoader({
-    key: 'f975c90386626f4734b267699a40883d',
-    plugin: ['AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor']
+Vue.use(VueAMap)
+VueAMap.initAMapApiLoader({
+    key: '5df198198b1005b5800703e7c895f97d',
+    plugin: ['VueAMap.Autocomplete', 'VueAMap.PlaceSearch', 'VueAMap.Scale', 'VueAMap.OverView', 'VueAMap.ToolBar', 'VueAMap.MapType',
+        'VueAMap.PolyEditor', 'VueAMap.CircleEditor']
 })
 
 

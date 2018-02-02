@@ -67,7 +67,7 @@ export default [{
             path: 'getLocation',
             component: getLocation,
             meta: {
-                title: 'getLocation',
+                title: '选择停车地址',
                 auth: 'getLocation',
                 hideBack: true,
                 keepAlive: true,

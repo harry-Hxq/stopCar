@@ -7,7 +7,7 @@
             </keep-alive>
             <router-view v-if="!$route.meta.keepAlive"></router-view>
         </view-box>
-        <nav-tab></nav-tab>
+
 
         <loading v-model="isLoading"></loading>
     </div>
