@@ -10,6 +10,7 @@ const contact = r => require.ensure([], () => r(require('../page/contact/contact
 const help = r => require.ensure([], () => r(require('../page/help/help')), 'help')
 const stopCar = r => require.ensure([], () => r(require('../page/stopCar/stopCar')), 'stopCar')
 const getLocation = r => require.ensure([], () => r(require('../page/getLocation/getLocation')), 'getLocation')
+const becomeMember = r => require.ensure([], () => r(require('../page/becomeMember/becomeMember')), 'becomeMember')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
 
 
@@ -59,7 +60,7 @@ export default [{
             meta: {
                 title: '账户信息',
                 auth: 'account',
-                hideBack: true,
+                hideBack: false,
                 keepAlive: true,
             },
         },
@@ -69,7 +70,7 @@ export default [{
             meta: {
                 title: '选择停车地址',
                 auth: 'getLocation',
-                hideBack: true,
+                hideBack: false,
                 keepAlive: true,
             },
         },
@@ -109,7 +110,17 @@ export default [{
             meta: {
                 title: '停车记录',
                 auth: 'stopRecord',
-                hideBack: true,
+                hideBack: false,
+                keepAlive: true,
+            },
+        },
+        {
+            path: 'becomeMember',
+            component: becomeMember,
+            meta: {
+                title: '成为会员',
+                auth: 'becomeMember',
+                hideBack: false,
                 keepAlive: true,
             },
         },

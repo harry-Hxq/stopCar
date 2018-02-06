@@ -1,26 +1,11 @@
 <template>
     <div>
         <head-top ref="headtop"></head-top>
-        <div class="vux-demo">
-            <img class="logo" src="../../images/liecheng_logo.png">
-            <h3>昵称</h3>
+
+        <divider>申明</divider>
+        <div slot="content" class="card-padding">
+            <p style="font-size:14px;line-height:1.5;">&nbsp;&nbsp;&nbsp;会员的费用为118元，成为后本司一年内需提供大于20次的交警正在贴罚单的通知。若小于20次，则按每次0.5元算，余额可直接点击退款。</p>
         </div>
-
-        <group>
-            <cell title="我的车牌"  value="闽F52545B" ></cell>
-            <cell title="会员信息"  link="/becomeMember" :value="is_member" is-link></cell>
-            <cell title="手机号码"  link="/setRate" is-link></cell>
-        </group>
-
-        <group>
-            <cell title="停车记录"  link="/stopRecord" is-link ></cell>
-        </group>
-        <group>
-            <cell title="帮助中心"  link="/help" is-link ></cell>
-        </group>
-        <group>
-            <cell title="联系客服"  link="/contact" is-link ></cell>
-        </group>
 
     </div>
 </template>
@@ -28,18 +13,16 @@
 
 <script>
     import {mapState} from 'vuex'
+    import { Divider, Card } from 'vux'
     import {getStore} from '../../config/mUtils'
-    import mapping from '../../config/mapping'
 
     export default {
         data () {
             return {
                 logged: '',
-                mapping: mapping,
-                is_member : '非会员'
             }
         },
-        components: {},
+        components: { Divider, Card},
         computed: {
             ...mapState([
                 'agentInfo',

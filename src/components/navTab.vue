@@ -20,13 +20,13 @@
   </tabbar> -->
 
   <tabbar v-if="isShow">
-    <tabbar-item link="/open">
+    <tabbar-item link="/becomeMember">
       <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_msg.png">
-      <span slot="label">开户</span>
+      <span slot="label">成为会员</span>
     </tabbar-item>
     <tabbar-item link="/stopCar">
       <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_article.png">
-      <span slot="label">用户管理</span>
+      <span slot="label">停车</span>
     </tabbar-item>
     <tabbar-item link="uc">
       <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_button.png">
