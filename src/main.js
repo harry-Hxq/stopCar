@@ -43,12 +43,13 @@ Vue.use(AlertPlugin)
 Vue.use(ConfirmPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(VueScroller)
-Vue.use(VueAMap)
-VueAMap.initAMapApiLoader({
-    key: '5df198198b1005b5800703e7c895f97d',
-    plugin: ['VueAMap.Autocomplete', 'VueAMap.PlaceSearch', 'VueAMap.Scale', 'VueAMap.OverView', 'VueAMap.ToolBar', 'VueAMap.MapType',
-        'VueAMap.PolyEditor', 'VueAMap.CircleEditor']
-})
+// Vue.use(VueAMap)
+// VueAMap.initAMapApiLoader({
+//     key: '5df198198b1005b5800703e7c895f97d',
+//     plugin: ['VueAMap.Autocomplete', 'VueAMap.PlaceSearch', 'VueAMap.Scale', 'VueAMap.OverView', 'VueAMap.ToolBar', 'VueAMap.MapType',
+//         'VueAMap.PolyEditor', 'VueAMap.CircleEditor'],
+//     uiVersion: '1.0' // 版本号
+// })
 
 
 

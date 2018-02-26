@@ -3,7 +3,7 @@
         <head-top ref="headtop"></head-top>
 
         <group v-for="item in list">
-            <cell title="车牌" :value="item.car_num" ></cell>
+            <cell title="状态" value="成功提醒" ></cell>
             <cell-form-preview :list="[
                     {label: '停车位置',value: item.location},
                     {label: '时间',value: formatTime(item.create_time)}
@@ -18,8 +18,8 @@
 <script>
     import {mapState} from 'vuex'
     import {formatDate,formatTime,getStore} from '../../config/mUtils'
-    import {XTable, LoadMore,CellFormPreview, Checker, CheckerItem,ButtonTab, ButtonTabItem, TransferDom, Popup} from 'vux'
-    import {stopLog} from '../../service/getData'
+    import {XTable, LoadMore,CellFormPreview, Checker, CheckerItem,ButtonTab, ButtonTabItem, TransferDom, Popup,} from 'vux'
+    import {tipLog} from '../../service/getData'
 
     export default {
         data () {
@@ -32,7 +32,7 @@
 
         },
         created() {
-            this.stopLog()
+            this.tipLog()
         },
         activated(){
 
@@ -43,9 +43,9 @@
         methods: {
             formatTime,
 
-            stopLog(){
+            tipLog(){
 
-                return stopLog()
+                return tipLog()
                     .then((data) => {
                         if(data.code === 200){
                             this.list = data.data.list

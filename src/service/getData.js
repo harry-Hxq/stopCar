@@ -323,3 +323,44 @@ export const rateReplyRecord = (param) => fetch('/tp/rate_reply_record', {
     ...param
 }, 'POST');
 
+
+/**
+ * 获取用户信息
+ */
+export const getUsers = (param) => fetch('/api/v1/user/user-profile', {
+    ...param
+}, 'GET');
+
+
+
+/**
+ * 确认停车
+ */
+export const confirmStop = (param) => fetch('/api/v1/user/stop-car', {
+    ...param
+}, 'POST');
+
+
+/**
+ * 停车记录
+ */
+export const stopLog = (param) => fetch('/api/v1/user/stop-log', {
+    ...param
+}, 'GET');
+
+
+/**
+ * 提醒记录
+ */
+export const tipLog = (param) => fetch('/api/v1/user/tip', {
+    ...param
+}, 'GET');
+
+
+/**
+ * 绑定用户信息
+ */
+export const bindUserInfo = (param) => fetch('/api/v1/user/bind-user-info', {
+    ...param
+}, 'POST');
+

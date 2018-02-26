@@ -58,7 +58,7 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         context: [ //代理路径
-            '/tp',
+            '/api/v1/user',
         ],
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README
@@ -75,7 +75,7 @@ module.exports = {
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         context: [ //代理路径
-            '/tp',
+            '/api/v1/user',
         ],
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README

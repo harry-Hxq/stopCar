@@ -2,13 +2,11 @@
     <div>
         <head-top ref="headtop"></head-top>
 
-        <div class="amap-page-container">
-            <el-amap-search-box class="search-box" :search-option="searchOption" :on-search-result="onSearchResult"></el-amap-search-box>
-            <el-amap vid="amapDemo" :center="mapCenter" :zoom="15" class="amap-demo">
-                <el-amap-marker :position="marker" ></el-amap-marker>
-            </el-amap>
-        </div>
-        <box gap="65px 10px">
+        <mapDrag @drag="dragMap" class="mapbox"></mapDrag>
+        <group >
+            <x-textarea title="当前位置" :value="dragData.address"  :autosize="true" :rows="2"></x-textarea>
+        </group>
+        <box gap="10px 10px">
             <x-button type="primary" @click.native="confirmLocation" action-type="button">确认</x-button>
         </box>
 
@@ -17,84 +15,58 @@
 
 
 <script>
+    import {XTextarea} from 'vux'
     import {mapState} from 'vuex'
     import {getStore} from '../../config/mUtils'
+    import mapDrag from '../../components/mapDrag'
 
     export default {
         data () {
             return {
-                marker: [117.0171952227, 25.0750315393],
-                searchOption: {
-                    city: '龙岩',
-                    citylimit: true
-                },
-                mapCenter: [117.0171952227, 25.0750315393],
-                location : {}
+                dragData: {
+                    lng: null,
+                    lat: null,
+                    address: null,
+                    nearestJunction: null,
+                    nearestRoad: null,
+                    nearestPOI: null
+                }
             }
         },
-        components: {},
+        components: {mapDrag,XTextarea},
         computed: {
-//            ...mapState([
-//                'agentInfo',
-//            ]),
-        },
-        created() {
 
-//            if(getStore('tpSessionId') && !this.agentInfo.phone) {
-//                App.getUserInfo();
-//            }
-//            this.onSearchResult()
         },
+
+        created(){
+            console.log(1118888888)
+        },
+
         activated(){
-            this.logged = getStore('tpSessionId')
-        },
-        mounted() {
-//            this.$refs.headtop.rightUrl = 'https://fund.liechengcf.com/login?phone='+this.agentInfo.phone
-//            this.$refs.headtop.loginFund = true
-        },
-        methods: {
-            confirmLocation() {
-                this.$router.push({path:'/stopCar', query:{address:this.location.name,lng:this.location.lng,lat:this.location.lat}})
-            },
-            onSearchResult(pois) {
-                console.log( pois[0])
-                this.location = pois[0]
-                this.marker = [this.location.lng,this.location.lat]
-                this.mapCenter = [this.location.lng,this.location.lat]
 
-//                let latSum = 0;
-//                let lngSum = 0;
-//                if (pois.length > 0) {
-//                    pois.forEach(poi => {
-//                        let {lng, lat} = poi;
-//                        lngSum += lng;
-//                        latSum += lat;
-////                        this.markers.push([poi.lng, poi.lat]);
-//                    });
-//                    let center = {
-//                        lng: lngSum / pois.length,
-//                        lat: latSum / pois.length
-//                    };
-//                    this.mapCenter = [center.lng, center.lat];
-//                }
+        },
+
+        methods: {
+            dragMap (data) {
+                console.log(data)
+                this.dragData = {
+                    lng: data.position.lng,
+                    lat: data.position.lat,
+                    address: data.address,
+                    nearestJunction: data.nearestJunction,
+                    nearestRoad: data.nearestRoad,
+                    nearestPOI: data.nearestPOI
+                }
+            },
+            confirmLocation(){
+                this.$router.push({path:'/stopCar', query:{address:this.dragData.address,lng:this.dragData.lng,lat:this.dragData.lat}})
             }
+
         }
     }
 </script>
 
 <style>
-    .amap-demo {
-        height: 100px;
-    }
+    .mapbox{ width: 100%; height: 400px; margin-bottom: 1px;  margin-top: 18px; }
 
-    .search-box {
-        position: absolute;
-        top: 25px;
-        left: 5px;
-    }
-
-    .amap-page-container {
-        position: relative;
-        height: 400px;
-    }
 </style>

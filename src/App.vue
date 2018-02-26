@@ -26,6 +26,15 @@ export default {
     },
     created() {
         window.App = this
+
+        if(!getStore('token')){
+            if(!this.$route.query.api_token){
+                window.location.href = 'http://www.yii2admin.cn/api/v1/user/wx-login?targetUrl='+window.location.href
+            }else{
+                setStore('token',this.$route.query.api_token)
+            }
+        }
+
     },
     mounted() {
     },

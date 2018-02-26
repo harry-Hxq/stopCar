@@ -47,7 +47,7 @@ const envs = {
         name: 'local',
         desc: '本地开发',
         baseUrl: '',
-        interfaceUrl: 'http://api.liechengcf.me',
+        interfaceUrl: 'http://www.yii2admin.cn',
     },
 }
 

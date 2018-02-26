@@ -6,12 +6,15 @@ const customer = r => require.ensure([], () => r(require('../page/customer/custo
 const uc = r => require.ensure([], () => r(require('../page/uc/uc')), 'uc')
 const account = r => require.ensure([], () => r(require('../page/account/account')), 'account')
 const stopRecord = r => require.ensure([], () => r(require('../page/stopRecord/stopRecord')), 'stopRecord')
+const tipLog = r => require.ensure([], () => r(require('../page/tipLog/tipLog')), 'tipLog')
 const contact = r => require.ensure([], () => r(require('../page/contact/contact')), 'contact')
 const help = r => require.ensure([], () => r(require('../page/help/help')), 'help')
 const stopCar = r => require.ensure([], () => r(require('../page/stopCar/stopCar')), 'stopCar')
 const getLocation = r => require.ensure([], () => r(require('../page/getLocation/getLocation')), 'getLocation')
 const becomeMember = r => require.ensure([], () => r(require('../page/becomeMember/becomeMember')), 'becomeMember')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
+const bindMobile = r => require.ensure([], () => r(require('../page/bindMobile/bindMobile')), 'bindMobile')
+const bindCarNum = r => require.ensure([], () => r(require('../page/bindCarNum/bindCarNum')), 'bindCarNum')
 
 
 
@@ -78,8 +81,28 @@ export default [{
             path: 'stopCar',
             component: stopCar,
             meta: {
-                title: '用户',
+                title: '停车',
                 auth: 'stopCar',
+                hideBack: true,
+                keepAlive: true,
+            },
+        },
+        {
+            path: 'bindCarNum',
+            component: bindCarNum,
+            meta: {
+                title: '绑定车牌',
+                auth: 'bindCarNum',
+                hideBack: true,
+                keepAlive: true,
+            },
+        },
+        {
+            path: 'bindMobile',
+            component: bindMobile,
+            meta: {
+                title: '绑定手机',
+                auth: 'bindMobile',
                 hideBack: true,
                 keepAlive: true,
             },
@@ -110,6 +133,16 @@ export default [{
             meta: {
                 title: '停车记录',
                 auth: 'stopRecord',
+                hideBack: false,
+                keepAlive: true,
+            },
+        },
+        {
+            path: 'tipLog',
+            component: tipLog,
+            meta: {
+                title: '提醒记录',
+                auth: 'tipLog',
                 hideBack: false,
                 keepAlive: true,
             },
@@ -149,9 +182,9 @@ export default [{
             component: uc,
             meta: {
                 title: '我的',
-                auth: 'login',
+                // auth: 'login',
                 hideBack: true,
-                keepAlive: true,
+                keepAlive: false,
             },
         },
         {

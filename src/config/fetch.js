@@ -3,15 +3,15 @@ import {getSignature, getStore, removeNull} from './mUtils'
 
 export default async(url = '', data = {}, type = 'GET', method = 'fetch', showLoading = true) => {
 	data = removeNull(data)
-	var tpSessionId = getStore('tpSessionId')
+	var token = getStore('token')
 	
 	// if(data.auth && !tpSessionId) {
 	// 	delete data.auth
 	// 	App.$router.push('/login')
 	// 	return
 	// }
-	if(tpSessionId) {
-		data.tpSessionId = tpSessionId
+	if(token) {
+		data.token = token
 	}
 
   // 签名
@@ -28,17 +28,8 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch', showLo
 
 	// 检查数据，未登录等
 	var checkData = function(data) {
-		if(!data.ret){
-            if(data.res.errorCode == '102001') {  // 未登录
-                App.LOGOUT()
-                App.$router.push('/login')
-            }
-            else if(data.res.errorCode == '102008') {  // 登录过期
-                App.LOGOUT()
-                App.$router.push('/login')
-            } else{
-                console.log(data.res.errorMsg)
-            }
+		if(!data.code === -2){ //登录过期，重新授权
+            window.location.href = 'http://www.yii2admin.cn/api/v1/user/wx-login?targetUrl='+window.location.href
 		}
 	}
 	// App.$refs.toast.showLoading()
