@@ -10,14 +10,13 @@ import FastClick from 'fastclick'
 import {mapState, mapMutations} from 'vuex'
 import {setStore, getStore, removeStore} from './config/mUtils'
 // import {Loading} from './config/mixin'
-import VueAMap  from 'vue-amap'
 
 
 
 // 全局组件
-import navTab from './components/navTab'
+
 import headTop from './components/headTop'
-Vue.component('navTab',navTab);
+// Vue.component('navTab',navTab);
 Vue.component('headTop',headTop);
 
 // 全局vux组件

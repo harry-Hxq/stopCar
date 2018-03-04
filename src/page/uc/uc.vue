@@ -25,6 +25,7 @@
             <cell title="帮助中心"  link="/help" is-link ></cell>
             <cell title="联系客服"  link="/contact" is-link ></cell>
         </group>
+        <nav-tab></nav-tab>
 
     </div>
 </template>
@@ -35,6 +36,7 @@
     import {getStore} from '../../config/mUtils'
     import mapping from '../../config/mapping'
     import {getUsers} from '../../service/getData'
+    import navTab from '../../components/navTab'
 
     export default {
         data () {
@@ -45,25 +47,23 @@
                 userInfo : {},
             }
         },
-        components: {},
+        components: {navTab},
         computed: {
 //            ...mapState([
 //                'agentInfo',
 //            ]),
         },
         created() {
-            this.initData()
+            this.getUsers()
         },
         activated(){
 
         },
         mounted() {
-            console.log(1117777111111111117)
+            console.log(111)
         },
         methods: {
-            initData(){
-                this.getUsers()
-            },
+
             getUsers(){
                 return getUsers()
                     .then((data => {
@@ -77,12 +77,5 @@
 </script>
 
 <style>
-    .vux-demo {
-        text-align: center;
-    }
 
-    .logo {
-        width: 100px;
-        height: 100px
-    }
 </style>

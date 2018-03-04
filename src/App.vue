@@ -7,7 +7,7 @@
             </keep-alive>
             <router-view v-if="!$route.meta.keepAlive"></router-view>
         </view-box>
-        <nav-tab></nav-tab>
+
 
         <loading v-model="isLoading"></loading>
     </div>
@@ -18,6 +18,7 @@ import { ViewBox } from 'vux'
 import {mapState, mapMutations, mapActions} from 'vuex'
 import {setStore, getStore, removeStore} from './config/mUtils'
 import {getUser} from './service/getData'
+import {baseUrl, interfaceUrl} from './config/env'
 
 export default {
     data() {
@@ -29,10 +30,13 @@ export default {
 
         if(!getStore('token')){
             if(!this.$route.query.api_token){
-                window.location.href = 'http://www.yii2admin.cn/api/v1/user/wx-login?targetUrl='+window.location.href
+                window.location.href = interfaceUrl+'/api/v1/user/wx-login?targetUrl='+window.location.href
             }else{
                 setStore('token',this.$route.query.api_token)
             }
+        }
+        if(this.$route.query.api_token){
+            setStore('token',this.$route.query.api_token)
         }
 
     },

@@ -153,7 +153,7 @@ export default [{
             meta: {
                 title: '成为会员',
                 auth: 'becomeMember',
-                hideBack: false,
+                hideBack: true,
                 keepAlive: true,
             },
         },

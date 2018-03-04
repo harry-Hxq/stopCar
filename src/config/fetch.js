@@ -28,8 +28,8 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch', showLo
 
 	// 检查数据，未登录等
 	var checkData = function(data) {
-		if(!data.code === -2){ //登录过期，重新授权
-            window.location.href = 'http://www.yii2admin.cn/api/v1/user/wx-login?targetUrl='+window.location.href
+		if(data.code === -2){ //登录过期，重新授权
+            window.location.href = interfaceUrl+'/api/v1/user/wx-login?targetUrl='+window.location.href
 		}
 	}
 	// App.$refs.toast.showLoading()
@@ -42,7 +42,7 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch', showLo
 		Object.keys(data).forEach(key => {
 			dataStr += key + '=' + data[key] + '&';
 		})
-
+        checkData(data)
 		if (dataStr !== '') {
 			dataStr = dataStr.substr(0, dataStr.lastIndexOf('&'));
 			url = url + '?' + dataStr;

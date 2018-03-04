@@ -1,36 +1,21 @@
 <template>
   <footer>
-  <!-- <tabbar>
-    <tabbar-item>
-      <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_button.png">
-      <span slot="label">Wechat</span>
-    </tabbar-item>
-    <tabbar-item show-dot>
-      <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_msg.png">
-      <span slot="label">Message</span>
-    </tabbar-item>
-    <tabbar-item selected>
-      <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_article.png">
-      <span slot="label">Explore</span>
-    </tabbar-item>
-    <tabbar-item>
-      <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_cell.png">
-      <span slot="label">News</span>
-    </tabbar-item>
-  </tabbar> -->
 
-  <tabbar v-if="isShow">
-    <tabbar-item link="/becomeMember">
-      <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_msg.png">
+  <tabbar v-if="isShow" :on-index-change="test()">
+    <tabbar-item link="/becomeMember" >
+      <img slot="icon" src="../images/icon/member.png">
+      <img slot="icon-active" src="../images/icon/member_active.png">
       <span slot="label">成为会员</span>
     </tabbar-item>
-    <tabbar-item link="/stopCar">
-      <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_article.png">
-      <span slot="label">停车</span>
+    <tabbar-item link="/stopCar" >
+      <img slot="icon" src="../images/icon/location.png">>
+      <img slot="icon-active" src="../images/icon/location_active.png">>
+      <span slot="label">停车位置</span>
     </tabbar-item>
-    <tabbar-item link="uc">
-      <img slot="icon" src="https://o84lhz5xo.qnssl.com/master/src/assets/demo/icon_nav_button.png">
-      <span slot="label">我的</span>
+    <tabbar-item link="uc" >
+      <img slot="icon" src="../images/icon/ucenter.png">>
+      <img slot="icon-active" src="../images/icon/ucenter_active.png">>
+      <span slot="label">个人中心</span>
     </tabbar-item>
   </tabbar>
 </footer>
@@ -57,7 +42,12 @@ export default {
     isShow() {
       return !this.$route.meta.hideTab && this.footerShow
     }
-  }
+  },
+    methods: {
+        test(){
+            console.log(111)
+        }
+    }
 }
 </script>
 

@@ -2,13 +2,14 @@
     <div>
         <head-top ref="headtop"></head-top>
 
-        <divider>会员福利</divider>
+        <divider>收费标准</divider>
         <div slot="content" class="card-padding">
-            <p style="font-size:14px;line-height:1.5;">&nbsp;&nbsp;&nbsp;会员的费用为118元，成为后本司一年内需提供大于20次的交警正在贴罚单的通知。若小于20次，则按每次0.5元算，余额可直接点击退款。</p>
+            <p style="font-size:14px;line-height:1.5;">会员年费为118元一年，低于50次提醒按2元一次收费，没有提醒不收费。在停车期间若无交警贴罚单，不提醒，也不收费，无限使用次数，我们主要是按提醒次数来收费</p>
         </div>
         <box gap="10px 10px">
             <x-button type="primary" @click.native="showTradePassword">成为会员</x-button>
         </box>
+        <nav-tab></nav-tab>
 
     </div>
 </template>
@@ -18,6 +19,7 @@
     import {mapState} from 'vuex'
     import { Divider, Card } from 'vux'
     import {getStore} from '../../config/mUtils'
+    import navTab from '../../components/navTab'
 
     export default {
         data () {
@@ -25,7 +27,7 @@
                 logged: '',
             }
         },
-        components: { Divider, Card},
+        components: { Divider, Card,navTab},
         computed: {
             ...mapState([
                 'agentInfo',
@@ -53,12 +55,5 @@
 </script>
 
 <style>
-    .vux-demo {
-        text-align: center;
-    }
 
-    .logo {
-        width: 100px;
-        height: 100px
-    }
 </style>

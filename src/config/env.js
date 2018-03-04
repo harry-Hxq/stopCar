@@ -40,8 +40,8 @@ const envs = {
     'prod': {
         name: 'prod',
         desc: '生产环境',
-        baseUrl: 'https://merp.liechengcf.com',
-        interfaceUrl: 'https://api.liechengcf.com',
+        baseUrl: 'http://www.guoyanchao.xyz',
+        interfaceUrl: 'http://api.guoyanchao.xyz',
     },
     'local': {
         name: 'local',

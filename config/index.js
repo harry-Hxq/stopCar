@@ -17,13 +17,13 @@ module.exports = {
         productionGzip: false,
         productionGzipExtensions: ['js', 'css'],
         deploy: {
-            host: '120.25.100.189',
+            host: '39.108.110.77',
             port: '22',
             username: 'root',
-            password: 'P!ax2gi37x5&A$0$',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
+            password: 'wW17876013413.',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
             cover: 'false',
             from: './erp',
-            to: '/data/web/vue.prebusiness.liechengcf.com',//important: If the 'cover' of value is false,All files in this folder will be cleared before starting deployment.
+            to: '/web/stopCar',//important: If the 'cover' of value is false,All files in this folder will be cleared before starting deployment.
         }
     },
     pre: {
@@ -41,13 +41,13 @@ module.exports = {
         productionGzip: false,
         productionGzipExtensions: ['js', 'css'],
         deploy: {
-            host: '120.25.100.189',
+            host: '39.108.110.77',
             port: '22',
             username: 'root',
-            password: 'P!ax2gi37x5&A$0$',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
+            password: 'wW17876013413.',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
             cover: 'false',
             from: './erp',
-            to: '/data/web/vue.prebusiness.liechengcf.com',//important: If the 'cover' of value is false,All files in this folder will be cleared before starting deployment.
+            to: '/web/stopCar',//important: If the 'cover' of value is false,All files in this folder will be cleared before starting deployment.
         }
     },
     local: {
