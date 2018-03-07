@@ -1,26 +1,21 @@
 <template>
     <div style="text-align: center;">
         <head-top ref="headtop"></head-top>
+        <div v-if="!stoping">
+            <group title="" v-show="!address">
+                <cell title="请选择停车位置" :is-link="true"  link="/getLocation" ></cell>
+            </group>
+            <group v-show="address">
+                <x-textarea title="确认停车位置" :value="address"  :autosize="true" :rows="2"></x-textarea>
+            </group>
 
-        <group title="" v-show="!address">
-            <cell title="请选择停车位置" :is-link="true"  link="/getLocation" ></cell>
-        </group>
-        <group v-show="address">
-            <x-textarea title="确认停车位置" :value="address"  :autosize="true" :rows="2"></x-textarea>
-        </group>
 
-        <div style='width:150px;height:150px;'>
-            <x-circle :percent="percent1" :stroke-width="10" stroke-color="#04BE02">
-                <span>{{stopCarStatus}}</span>
-            </x-circle>
-        </div>
-
-        <box gap="10px 10px" v-show="address">
-            <x-button type="primary" :is-link="true"  link="/getLocation" action-type="button">重新选择</x-button>
-        </box>
-        <box gap="10px 10px">
-            <x-button type="primary" :disabled="isCanSubmit" action-type="button" @click.native="submit">确认停车</x-button>
-        </box>
+            <box gap="10px 10px" v-show="address">
+                <x-button type="primary" :is-link="true"  link="/getLocation" action-type="button">重新选择</x-button>
+            </box>
+            <box gap="10px 10px">
+                <x-button type="primary" :disabled="isCanSubmit" action-type="button" @click.native="submit">确认停车</x-button>
+            </box>
 
 
             <confirm v-model="confirmShow"
@@ -28,9 +23,13 @@
                      :content="content"
                      confirm-text = "成为会员"
                      @on-confirm="onConfirm">
-
             </confirm>
 
+        </div>
+        <div v-if="stoping">
+            <img src="../../images/loading.gif" alt="">
+            <p>停车中...</p>
+        </div>
 
         <nav-tab></nav-tab>
     </div>
@@ -47,7 +46,7 @@
 
     import {mapState} from 'vuex'
     import {getStore} from '../../config/mUtils'
-    import {XTextarea,Confirm,TransferDom,XCircle} from 'vux'
+    import {XTextarea,Confirm,TransferDom} from 'vux'
     import {confirmStop,getUsers} from '../../service/getData'
     import navTab from '../../components/navTab'
     export default {
@@ -68,13 +67,14 @@
                 content: '',
                 confirmShow : false,
                 stopCarStatus : "停车中...",
-                intervalid1 :{}
+                intervalid1 :{},
+                stoping : false,
             };
         },
 
 
         components: {
-            XTextarea,navTab,Confirm,TransferDom,XCircle
+            XTextarea,navTab,Confirm,TransferDom
         },
         computed: {
             ...mapState([
@@ -83,16 +83,8 @@
         },
         created() {
             this.getUsers()
-//            this.update2()
-            this.intervalid1 = setInterval(() => {
-                this.percent1+=1;
-                if(this.percent1 = 100){
-                    this.percent1 = 1;
-                }
-            }, 50)
         },
         activated(){
-
             if(this.$route.query.address){
                 this.token = getStore('token')
                 this.address = this.$route.query.address
@@ -117,6 +109,7 @@
                     }))
             },
             submit(){
+
                 if(!this.userInfo.is_vip){
                     //不是vip用户，提示免费停车次数
                     if(this.userInfo.free_times > 0){
@@ -124,7 +117,8 @@
                         this.confirmShow = true;
                     }
                 }else{
-                    this.confirmStop()
+                    this.stoping = true
+//                    this.confirmStop()
                 }
             },
             onCancel(){
@@ -135,18 +129,6 @@
                 this.confirmShow = false;
                 this.$router.push('/becomeMember')
             },
-            startLoading (){
-                setInterval(this.update1(),1000)
-            },
-
-            update1 () {
-                console.log(this.percent1)
-                this.percent1 +=1
-                if(this.percent1 > 100){
-                    clearInterval()
-                }
-            },
-
 
             confirmStop(){
 

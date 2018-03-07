@@ -29,7 +29,8 @@
                 placeSearch: null,
                 dragStatus: false,
                 AMapUI: null,
-                AMap: null
+                AMap: null,
+                geolocation : null
             }
         },
         watch: {
@@ -53,7 +54,7 @@
                 let AMap = this.AMap = window.AMap
                 AMapUI.loadUI(['misc/PositionPicker'], PositionPicker => {
                     let mapConfig = {
-                        zoom: 12,
+                        zoom: 15,
                         cityName: '龙岩'
                     }
                     if (this.lat && this.lng) {
@@ -77,6 +78,15 @@
                             position: 'RB'
                         }))
                     })
+
+                    // 定位当前位置
+                    AMap.service('AMap.Geolocation',() => {
+                        this.geolocation = new AMap.Geolocation({
+                            city: '龙岩',
+                            map: map,
+                        })
+                    })
+
                     // 创建地图拖拽
                     let positionPicker = new PositionPicker({
                         mode: 'dragMap', // 设定为拖拽地图模式，可选'dragMap'、'dragMarker'，默认为'dragMap'
@@ -84,12 +94,7 @@
                     })
                     // 拖拽完成发送自定义 drag 事件
                     positionPicker.on('success', positionResult => {
-                        // 过滤掉初始化地图后的第一次默认拖放
-//                        if (!this.dragStatus) {
-//                            this.dragStatus = true
-//                        } else {
-                            this.$emit('drag', positionResult)
-//                        }
+                        this.$emit('drag', positionResult)
                     })
                     // 启动拖放
                     positionPicker.start()

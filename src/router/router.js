@@ -93,7 +93,7 @@ export default [{
             meta: {
                 title: '绑定车牌',
                 auth: 'bindCarNum',
-                hideBack: true,
+                hideBack: false,
                 keepAlive: true,
             },
         },

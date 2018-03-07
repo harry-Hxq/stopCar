@@ -42,6 +42,7 @@ Vue.use(AlertPlugin)
 Vue.use(ConfirmPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(VueScroller)
+Vue.use(require("components/js/tap.js"));
 // Vue.use(VueAMap)
 // VueAMap.initAMapApiLoader({
 //     key: '5df198198b1005b5800703e7c895f97d',

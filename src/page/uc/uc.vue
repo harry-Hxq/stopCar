@@ -1,10 +1,6 @@
 <template>
     <div>
         <head-top ref="headtop"></head-top>
-        <!--<div class="vux-demo">-->
-            <!--<img class="logo" src="../../images/liecheng_logo.png">-->
-            <!--<h3>昵称</h3>-->
-        <!--</div>-->
 
         <group>
             <cell title="我的车牌"  value="未绑定" link="/bindCarNum" v-if="!userInfo.plate_num" is-link></cell>

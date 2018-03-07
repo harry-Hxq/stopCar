@@ -1,7 +1,7 @@
 <template>
     <header v-if="headerShow">
         <x-header slot="header"
-                  style="width:100%;position:absolute;left:0;top:0;z-index:100;"
+                  style="width:100%;position:absolute;left:0;top:0;z-index:100;background:#0e82da"
                   :left-options="leftOptions"
                   :right-options="rightOptions"
                   :title="title">
