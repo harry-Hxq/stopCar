@@ -12,7 +12,6 @@ import {setStore, getStore, removeStore} from './config/mUtils'
 // import {Loading} from './config/mixin'
 
 
-
 // 全局组件
 
 import headTop from './components/headTop'
@@ -36,6 +35,10 @@ import VueScroller from 'vue-scroller'
 Vue.use(ConfigPlugin, {
   $layout: 'VIEW_BOX' // global config for VUX, since v2.5.12
 })
+
+import  VueResource  from 'vue-resource'
+
+Vue.use(VueResource)
 // plugins
 Vue.use(ToastPlugin)
 Vue.use(AlertPlugin)
@@ -43,15 +46,20 @@ Vue.use(ConfirmPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(VueScroller)
 Vue.use(require("components/js/tap.js"));
+import BaiduMap from 'vue-baidu-map'
+Vue.use(BaiduMap, {
+    // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+    ak: 'vFXoHFCpIsou67qZj4IbPEdEctOGGRel'
+})
+
+// import VueAMap from 'vue-amap';
 // Vue.use(VueAMap)
 // VueAMap.initAMapApiLoader({
 //     key: '5df198198b1005b5800703e7c895f97d',
 //     plugin: ['VueAMap.Autocomplete', 'VueAMap.PlaceSearch', 'VueAMap.Scale', 'VueAMap.OverView', 'VueAMap.ToolBar', 'VueAMap.MapType',
-//         'VueAMap.PolyEditor', 'VueAMap.CircleEditor'],
+//         'VueAMap.PolyEditor', 'VueAMap.CircleEditor','VueAMap.Geolocation'],
 //     uiVersion: '1.0' // 版本号
 // })
-
-
 
 
 // filters and directives
@@ -101,14 +109,14 @@ router.beforeEach((to, from, next) => {
   store.commit('updateLoadingStatus', {isLoading: true})
   // 验证是否需要登录
   if (to.matched.some(record => record.meta.auth == 'login')) {
-    if (!getStore('tpSessionId')) {
-      next({
-        path: '/login',
-        query: { redirect: to.fullPath }
-      })
-    } else{
+    // if (!getStore('tpSessionId')) {
+    //   next({
+    //     path: '/login',
+    //     query: { redirect: to.fullPath }
+    //   })
+    // } else{
       next()
-    }
+    // }
   } 
   else {
     next()

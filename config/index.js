@@ -17,10 +17,10 @@ module.exports = {
         productionGzip: false,
         productionGzipExtensions: ['js', 'css'],
         deploy: {
-            host: '39.108.110.77',
+            host: '47.104.148.36',
             port: '22',
             username: 'root',
-            password: 'wW17876013413.',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
+            password: 'harrytcwy123456.',//or use privateKey login(privateKey: require('fs').readFileSync('/path/to/private/key')).
             cover: 'false',
             from: './erp',
             to: '/web/stopCar',//important: If the 'cover' of value is false,All files in this folder will be cleared before starting deployment.

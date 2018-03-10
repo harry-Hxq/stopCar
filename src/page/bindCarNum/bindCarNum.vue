@@ -80,12 +80,6 @@
 
         },
         created() {
-            console.log(111212121211)
-
-
-            if(getStore('tpSessionId') && !this.agentInfo.phone) {
-                App.getUserInfo();
-            }
 
         },
         activated(){

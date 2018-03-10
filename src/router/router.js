@@ -1,8 +1,6 @@
 import App from '../App'
 
-// const home = r => require.ensure([], () => r(require('../page/home/home')), 'home')
-const open = r => require.ensure([], () => r(require('../page/open/open')), 'open')
-const customer = r => require.ensure([], () => r(require('../page/customer/customer')), 'customer')
+
 const uc = r => require.ensure([], () => r(require('../page/uc/uc')), 'uc')
 const account = r => require.ensure([], () => r(require('../page/account/account')), 'account')
 const stopRecord = r => require.ensure([], () => r(require('../page/stopRecord/stopRecord')), 'stopRecord')
@@ -12,36 +10,13 @@ const help = r => require.ensure([], () => r(require('../page/help/help')), 'hel
 const stopCar = r => require.ensure([], () => r(require('../page/stopCar/stopCar')), 'stopCar')
 const getLocation = r => require.ensure([], () => r(require('../page/getLocation/getLocation')), 'getLocation')
 const becomeMember = r => require.ensure([], () => r(require('../page/becomeMember/becomeMember')), 'becomeMember')
+const pay = r => require.ensure([], () => r(require('../page/becomeMember/children/pay')), 'pay')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
 const bindMobile = r => require.ensure([], () => r(require('../page/bindMobile/bindMobile')), 'bindMobile')
 const bindCarNum = r => require.ensure([], () => r(require('../page/bindCarNum/bindCarNum')), 'bindCarNum')
+const memberText1 = r => require.ensure([], () => r(require('../page/memberText1/memberText1')), 'memberText1')
+const memberText2 = r => require.ensure([], () => r(require('../page/memberText2/memberText2')), 'memberText2')
 
-
-
-const openErp = r => require.ensure([], () => r(require('../page/openErp/openErp')), 'openErp')
-const openFund = r => require.ensure([], () => r(require('../page/openFund/openFund')), 'openFund')
-const customerErp = r => require.ensure([], () => r(require('../page/customerErp/customerErp')), 'customerErp')
-const customerFund = r => require.ensure([], () => r(require('../page/customerFund/customerFund')), 'customerFund')
-const customerFundDetail = r => require.ensure([], () => r(require('../page/customerFundDetail/customerFundDetail')), 'customerFundDetail')
-const customerErpDetail = r => require.ensure([], () => r(require('../page/customerErpDetail/customerErpDetail')), 'customerErpDetail')
-const customerFundAccount = r => require.ensure([], () => r(require('../page/customerFundAccount/customerFundAccount')), 'customerFundAccount')
-const customerFundPosition = r => require.ensure([], () => r(require('../page/customerFundPosition/customerFundPosition')), 'customerFundPosition')
-const customerFundRecord = r => require.ensure([], () => r(require('../page/customerFundRecord/customerFundRecord')), 'customerFundRecord')
-const customerFundDeposit = r => require.ensure([], () => r(require('../page/customerFundDeposit/customerFundDeposit')), 'customerFundDeposit')
-const customerFundExchange = r => require.ensure([], () => r(require('../page/customerFundExchange/customerFundExchange')), 'customerFundExchange')
-const customerFundWithdraw = r => require.ensure([], () => r(require('../page/customerFundWithdraw/customerFundWithdraw')), 'customerFundWithdraw')
-const customerFundEditBank = r => require.ensure([], () => r(require('../page/customerFundEditBank/customerFundEditBank')), 'customerFundEditBank')
-const customerFundDepositLog = r => require.ensure([], () => r(require('../page/customerFundDepositLog/customerFundDepositLog')), 'customerFundDepositLog')
-const customerFundWithdrawLog = r => require.ensure([], () => r(require('../page/customerFundWithdrawLog/customerFundWithdrawLog')), 'customerFundWithdrawLog')
-const customerFundExchangeLog = r => require.ensure([], () => r(require('../page/customerFundExchangeLog/customerFundExchangeLog')), 'customerFundExchangeLog')
-const customerFundBank = r => require.ensure([], () => r(require('../page/customerFundBank/customerFundBank')), 'customerFundBank')
-const purchase = r => require.ensure([], () => r(require('../page/purchase/purchase')), 'purchase')
-const setTradePassword = r => require.ensure([], () => r(require('../page/setTradePassword/setTradePassword')), 'setTradePassword')
-const modifyTradePassword = r => require.ensure([], () => r(require('../page/modifyTradePassword/modifyTradePassword')), 'modifyTradePassword')
-const performance = r => require.ensure([], () => r(require('../page/performance/performance')), 'performance')
-const setRate = r => require.ensure([], () => r(require('../page/setRate/setRate')), 'setRate')
-const updateRate = r => require.ensure([], () => r(require('../page/updateRate/updateRate')), 'updateRate')
-const updateRateRecord = r => require.ensure([], () => r(require('../page/updateRateRecord/updateRateRecord')), 'updateRateRecord')
 
 export default [{
     path: '/',
@@ -49,9 +24,9 @@ export default [{
     children: [
         {
             path: '/',
-            component: open,
+            component: stopCar,
             meta: {
-                title: '开户',
+                title: '停车',
                 auth: 'login',
                 hideBack: true,
                 keepAlive: true,
@@ -84,7 +59,7 @@ export default [{
                 title: '停车',
                 auth: 'stopCar',
                 hideBack: true,
-                keepAlive: true,
+                keepAlive: false,
             },
         },
         {
@@ -103,7 +78,7 @@ export default [{
             meta: {
                 title: '绑定手机',
                 auth: 'bindMobile',
-                hideBack: true,
+                hideBack: false,
                 keepAlive: true,
             },
         },
@@ -148,33 +123,22 @@ export default [{
             },
         },
         {
-            path: 'becomeMember',
+            path: '/becomeMember',
             component: becomeMember,
             meta: {
-                title: '成为会员',
+                title: '会员',
                 auth: 'becomeMember',
-                hideBack: true,
+                hideBack: false,
                 keepAlive: true,
             },
         },
         {
-            path: '/open',
-            component: open,
+            path: '/becomeMember/pay', // 支付x
+            component: pay,
             meta: {
-                title: '开户',
-                auth: 'login',
-                hideBack: true,
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customer',
-            component: customer,
-            meta: {
-                title: '客户管理',
-                auth: 'login',
-                hideBack: true,
-                keepAlive: true,
+                title: '购买vip',
+                hideBack: false,
+                keepAlive: false,
             },
         },
         {
@@ -183,7 +147,7 @@ export default [{
             meta: {
                 title: '我的',
                 // auth: 'login',
-                hideBack: true,
+                hideBack: false,
                 keepAlive: false,
             },
         },
@@ -197,242 +161,23 @@ export default [{
             },
         },
         {
-            path: '/openErp',
-            component: openErp,
+            path: '/memberText1',
+            component: memberText1,
             meta: {
-                title: 'ERP开户',
-                auth: 'login',
-            },
-        },
-        {
-            path: '/openFund',
-            component: openFund,
-            meta: {
-                title: '基金开户',
-                auth: 'login',
+                title: '会员福利',
+                hideBack: false,
                 hideTab: true,
             },
         },
         {
-            path: '/customerErp',
-            component: customerErp,
+            path: '/memberText2',
+            component: memberText2,
             meta: {
-                title: 'erp用户',
-                auth: 'login',
-                keepAlive: true,
+                title: '会员专享',
+                hideBack: false,
+                hideTab: true,
             },
-        },
-        {
-            path: '/customerFund',
-            component: customerFund,
-            meta: {
-                title: '基金用户',
-                auth: 'login',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customerFundDetail',
-            component: customerFundDetail,
-            meta: {
-                title: '基金用户',
-                auth: 'customerFundDetail',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customerErpDetail',
-            component: customerErpDetail,
-            meta: {
-                title: '基金用户',
-                auth: 'customerErpDetail',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customerFundAccount',
-            component: customerFundAccount,
-            meta: {
-                title: '基金账户详情',
-                auth: 'customerFundAccount',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customerFundPosition',
-            component: customerFundPosition,
-            meta: {
-                title: '基金持仓',
-                auth: 'customerFundPosition',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customerFundRecord',
-            component: customerFundRecord,
-            meta: {
-                title: '基金交易记录',
-                auth: 'customerFundRecord',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customerFundDeposit',
-            component: customerFundDeposit,
-            meta: {
-                title: '账户入金',
-                auth: 'customerFundDeposit',
-                keepAlive: false,
-            },
-        },
-        {
-            path: '/customerFundExchange',
-            component: customerFundExchange,
-            meta: {
-                title: '币种兑换',
-                auth: 'customerFundExchange',
-                keepAlive: false,
-            },
-        },
-        {
-            path: '/customerFundWithdraw',
-            component: customerFundWithdraw,
-            meta: {
-                title: '账户提现',
-                auth: 'customerFundWithdraw',
-                keepAlive: false,
-            },
-        },
-        {
-            path: '/customerFundEditBank',
-            component: customerFundEditBank,
-            meta: {
-                title: '编辑银行卡',
-                auth: 'customerFundEditBank',
-                keepAlive: false,
-            },
-        },
-        {
-            path: '/customerFundDepositLog',
-            component: customerFundDepositLog,
-            meta: {
-                title: '入金记录',
-                auth: 'customerFundDepositLog',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customerFundWithdrawLog',
-            component: customerFundWithdrawLog,
-            meta: {
-                title: '提现记录',
-                auth: 'customerFundWithdrawLog',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customerFundExchangeLog',
-            component: customerFundExchangeLog,
-            meta: {
-                title: '兑换记录',
-                auth: 'customerFundExchangeLog',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/customerFundBank',
-            component: customerFundBank,
-            meta: {
-                title: '银行卡',
-                auth: 'customerFundBank',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/purchase',
-            component: purchase,
-            meta: {
-                title: '认购',
-                auth: 'purchase',
-                keepAlive: false,
-            },
-        },
-        {
-            path: '/setTradePassword',
-            component: setTradePassword,
-            meta: {
-                title: '设置交易密码',
-                auth: 'setTradePassword',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/modifyTradePassword',
-            component: modifyTradePassword,
-            meta: {
-                title: '修改交易密码',
-                auth: 'modifyTradePassword',
-                keepAlive: false,
-            },
-        },
-        {
-            path: '/performance',
-            component: performance,
-            meta: {
-                title: '我的业绩',
-                auth: 'performance',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/setRate',
-            component: setRate,
-            meta: {
-                title: '我的认购费',
-                auth: 'setRate',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/updateRate',
-            component: updateRate,
-            meta: {
-                title: '更改认购费',
-                auth: 'updateRate',
-                keepAlive: true,
-            },
-        },
-        {
-            path: '/updateRateRecord',
-            component: updateRateRecord,
-            meta: {
-                title: '申请记录',
-                auth: 'updateRateRecord',
-                keepAlive: true,
-            },
-        },
+        }
     ]
 }]
 
-
-// import Vue from 'vue'
-// import Router from 'vue-router'
-
-// const Hello = r => require.ensure([], () => r(require('../components/Hello')), 'Hello')
-// const index = r => require.ensure([], () => r(require('../page/index/index')), 'index')
-// import Hello from '@/components/Hello'
-
-
-
-
-// Vue.use(Router)
-
-// export default new Router({
-//   routes: [
-//     {
-//       path: '/',
-//       name: 'index',
-//       component: index
-//     }
-//   ]
-// })
