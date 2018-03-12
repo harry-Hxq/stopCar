@@ -35,22 +35,6 @@
                     return value;
                 }
             },
-            shareAddLeaf(type){
-                return shareAddLeaf({type:type})
-                    .then((data) => {
-                        if(data.ret) {
-                            eventBus.$emit('addLeaf',data.res.data)
-                            eventBus.$emit('hasShare',type)
-                        }else {
-                            console.log(data.res.errorMsg)
-                        }
-                    })
-
-
-
-
-
-            },
             getWechatShare(share_info) {
                 if(!share_info){
                     share_info = this.share_info_default

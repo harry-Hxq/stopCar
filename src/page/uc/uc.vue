@@ -12,7 +12,7 @@
             <cell title="我的车牌"  :value="userInfo.plate_num" v-if="userInfo.plate_num" is-link link="/bindCarNum">
                 <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../images/icon/car_num_20.png">
             </cell>
-            <cell title="会员信息"  value="vip会员" v-if="userInfo.is_vip">
+            <cell title="会员信息" link="/becomeMember"  value="vip会员" v-if="userInfo.is_vip" is-link>
                 <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../images/icon/huiyuan_20.png">
             </cell>
             <cell title="会员信息"  link="/becomeMember" value="成为会员" v-if="!userInfo.is_vip" is-link>

@@ -26,7 +26,7 @@
         </group>
 
         <group v-if="userInfo.is_vip">
-            <cell title="申请退款"  @native.native="applyRefund" is-link >
+            <cell title="申请退款"  @click.native="applyRefund" is-link >
                 <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../images/icon/stop_log_20.png">
             </cell>
         </group>
@@ -80,20 +80,26 @@
 
         },
         mounted() {
-
         },
         methods: {
             applyRefund(){
+                console.log(232)
                 if(this.userInfo.is_vip){
                     this.$vux.alert.show({
                         title:"停车无忧",
-                        text: '还未满一年服务周期，不可退款',
+                        content: '还未满一年服务周期，不可退款',
+                    })
+                }else{
+                    this.$vux.alert.show({
+                        title:"停车无忧",
+                        content: '您不是vip用户',
                     })
                 }
             },
 
             submit(){
-                this.$router.push('/becomeMember/pay')
+//                this.$router.push('/becomeMember/pay')
+                window.location.href = '/becomeMember/pay'
             },
             onConfirm (){
                 this.confirmShow = false;
@@ -143,8 +149,6 @@
         margin-left: 6%;
         font-size: 14px;
     }
-
-
 
     .userCard .carButton {
         position: absolute;

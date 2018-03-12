@@ -13,7 +13,7 @@ export const accountLogin = (param) => fetch('/tp/login', {
  */
 export const getUsers = (param) => fetch('/api/v1/user/user-profile', {
     ...param
-}, 'GET');
+}, 'GET','fetch',false);
 
 
 
@@ -82,6 +82,13 @@ export const PayLocalOrder = (param) => fetch('/api/v1/user/pay-local-order', {
 export const PayConfig = (param) => fetch('/api/v1/user/pay-config', {
     ...param
 }, 'get');
+
+/**
+ * 获取支付配置
+ */
+export const endStopCar = (param) => fetch('/api/v1/user/end-stop-car', {
+    ...param
+}, 'post');
 
 
 

@@ -7,7 +7,7 @@ const stopRecord = r => require.ensure([], () => r(require('../page/stopRecord/s
 const tipLog = r => require.ensure([], () => r(require('../page/tipLog/tipLog')), 'tipLog')
 const contact = r => require.ensure([], () => r(require('../page/contact/contact')), 'contact')
 const help = r => require.ensure([], () => r(require('../page/help/help')), 'help')
-const stopCar = r => require.ensure([], () => r(require('../page/stopCar/stopCar')), 'stopCar')
+const stopCar = r => require.ensure([], () => r(require('../page/stopCar/stopCar4')), 'stopCar')
 const getLocation = r => require.ensure([], () => r(require('../page/getLocation/getLocation')), 'getLocation')
 const becomeMember = r => require.ensure([], () => r(require('../page/becomeMember/becomeMember')), 'becomeMember')
 const pay = r => require.ensure([], () => r(require('../page/becomeMember/children/pay')), 'pay')

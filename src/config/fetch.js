@@ -29,9 +29,8 @@ export default async(url = '', data = {}, type = 'GET', method = 'fetch', showLo
 	// 检查数据，未登录等
 	var checkData = function(data) {
 		if(data.code === -2 || data.code === 0){ //登录过期，重新授权
-            // window.location.href = interfaceUrl+'/api/v1/user/wx-login?targetUrl='+window.location.href
+            window.location.href = interfaceUrl+'/api/v1/user/wx-login?targetUrl='+window.location.href
 		}
-
 
 
 	}

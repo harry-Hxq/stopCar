@@ -40,7 +40,7 @@ const envs = {
     'prod': {
         name: 'prod',
         desc: '生产环境',
-        baseUrl: 'http://www.xltcwy.cn',
+        baseUrl: 'https://www.xltcwy.cn',
         interfaceUrl: 'http://api.xltcwy.cn',
     },
     'local': {

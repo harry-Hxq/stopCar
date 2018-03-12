@@ -10,15 +10,18 @@
 -->
 <template>
     <div class="m-map">
-        <div class="confirmButton">
+        <div class="confirmButton" v-if="!is_end_stoping">
             <span  @click="Stop">确认停车</span>
+        </div>
+        <div class="confirmButton" v-if="is_end_stoping">
+            <span  @click="endStoping">结束停车</span>
         </div>
         <div class="ucenter" @click="goUc">
             <img src="../images/icon/ucenter_active.png" alt="">
         </div>
-        <div class="getlocation" @click="getLocation">
-            <img src="../images/icon/getlocation.png" alt="">
-        </div>
+        <!--<div class="getlocation" @click="getLocation">-->
+            <!--<img src="../images/icon/getlocation.png" alt="">-->
+        <!--</div>-->
         <div id="js-container" class="map"></div>
     </div>
 </template>
@@ -26,6 +29,7 @@
 <script>
     import remoteLoad from '../plugins/remoteLoad'
     import {confirmStop,getUsers} from '../service/getData'
+    import eventBus from '../config/eventBus'
     export default {
         props: ['lat', 'lng'],
         data () {
@@ -36,7 +40,8 @@
                 AMapUI: null,
                 AMap: null,
                 geolocation : null,
-                userInfo:{}
+                userInfo:{},
+                is_end_stoping : false
             }
         },
         methods: {
@@ -50,47 +55,13 @@
             confirmButton(){
 
             },
+            endStoping(){
+                this.is_end_stoping = false;
+            },
             Stop(){
-
-                console.log(23232)
-                return getUsers()
-                    .then((data => {
-                        let that = this;
-                        if(data.code === 200) {
-                            that.userInfo = data.data
-                            if(that.userInfo.is_vip){
-                                return confirmStop()
-                                    .then((data => {
-                                        if(data.code === 200){
-                                            that.$vux.alert.show({
-                                                title: '停车无忧提醒您',
-                                                content: '停车中。。。',
-                                            })
-                                        }
-                                    }))
-                            }else{
-                                that.$vux.alert.show({
-                                    title: '停车无忧提醒您',
-                                    content: '您不是vip会员，无法享有此服务，请先成为vip会员',
-                                    onHide () {
-                                        that.$router.push('/becomeMember/pay')
-                                    }
-                                })
-
-                            }
-
-                        }
-
-                    }))
+                eventBus.$emit('confirmStop') //确认停车
             },
 
-
-//            // 搜索
-//            handleSearch () {
-//                if (this.searchKey) {
-//                    this.placeSearch.search(this.searchKey)
-//                }
-//            },
             async getMap () {
                 // 已载入高德地图API，则直接初始化地图
                 if (window.AMap && window.AMapUI) {

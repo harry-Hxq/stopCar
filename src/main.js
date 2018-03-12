@@ -38,6 +38,7 @@ Vue.use(ConfigPlugin, {
 
 import  VueResource  from 'vue-resource'
 
+
 Vue.use(VueResource)
 // plugins
 Vue.use(ToastPlugin)
@@ -46,18 +47,19 @@ Vue.use(ConfirmPlugin)
 Vue.use(LoadingPlugin)
 Vue.use(VueScroller)
 Vue.use(require("components/js/tap.js"));
-import BaiduMap from 'vue-baidu-map'
-Vue.use(BaiduMap, {
-    // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
-    ak: 'vFXoHFCpIsou67qZj4IbPEdEctOGGRel'
-})
+
+
+// import BaiduMap from 'vue-baidu-map'
+// Vue.use(BaiduMap, {
+//     // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+//     ak: '5df198198b1005b5800703e7c895f97d'
+// })
 
 // import VueAMap from 'vue-amap';
 // Vue.use(VueAMap)
 // VueAMap.initAMapApiLoader({
 //     key: '5df198198b1005b5800703e7c895f97d',
-//     plugin: ['VueAMap.Autocomplete', 'VueAMap.PlaceSearch', 'VueAMap.Scale', 'VueAMap.OverView', 'VueAMap.ToolBar', 'VueAMap.MapType',
-//         'VueAMap.PolyEditor', 'VueAMap.CircleEditor','VueAMap.Geolocation'],
+//     plugin: ['VueAMap.Autocomplete',  'VueAMap.Scale',  'VueAMap.ToolBar', 'VueAMap.Geolocation'],
 //     uiVersion: '1.0' // 版本号
 // })
 
