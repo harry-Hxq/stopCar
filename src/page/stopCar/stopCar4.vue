@@ -253,7 +253,7 @@
                         title: '停车无忧提醒您',
                         content: '您不是vip会员，无法享有此服务，请先成为vip会员',
                         onHide () {
-                            that.$router.push('/becomeMember/pay')
+                            window.location.href = '/becomeMember/pay'
                         }
                     })
 

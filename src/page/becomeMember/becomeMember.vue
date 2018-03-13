@@ -16,10 +16,11 @@
         <div class="clear"></div>
 
         <group title="vip专属特权">
-            <cell title="会员福利"  link="/memberText1" is-link >
+
+            <cell title="会员专享"  link="/memberText2" is-link >
                 <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../images/icon/stop_log_20.png">
             </cell>
-            <cell title="会员专享"  link="/memberText2" is-link >
+            <cell title="收费标准"  link="/memberText1" is-link >
                 <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../images/icon/stop_log_20.png">
             </cell>
 
@@ -66,7 +67,6 @@
                 confirmShow : false,
                 content : '',
                 deadline : 0,
-
             }
         },
         components: { Divider, Card,navTab,Confirm},
@@ -87,7 +87,7 @@
                 if(this.userInfo.is_vip){
                     this.$vux.alert.show({
                         title:"停车无忧",
-                        content: '还未满一年服务周期，不可退款',
+                        content: '未到结算周期，暂时无法退款',
                     })
                 }else{
                     this.$vux.alert.show({
