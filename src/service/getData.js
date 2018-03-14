@@ -84,9 +84,18 @@ export const PayConfig = (param) => fetch('/api/v1/user/pay-config', {
 }, 'get');
 
 /**
- * 获取支付配置
+ * 结束停车
  */
 export const endStopCar = (param) => fetch('/api/v1/user/end-stop-car', {
+    ...param
+}, 'post');
+
+
+
+/**
+ * 发送验证码
+ */
+export const sendVcode = (param) => fetch('/api/v1/user/send-vcode', {
     ...param
 }, 'post');
 

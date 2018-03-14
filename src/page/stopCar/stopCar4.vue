@@ -96,6 +96,9 @@
                 that.map.addOverlay(that.markers)
                 that.markers.setAnimation(BMAP_ANIMATION_BOUNCE);
             },
+
+
+
             ready () {
                 var that = this;
                 that.$vux.toast.show({
@@ -131,11 +134,22 @@
                         that.map.addOverlay(that.markers)
                         that.markers.setAnimation(BMAP_ANIMATION_BOUNCE);
 
+                        //设置标签
+                        var label = new BMap.Label("点击可拖动",{offset:new BMap.Size(20,-16)});
+                        label.setStyle({ color : "#0e82da", fontSize : "15px" ,borderRadius : "7px",border : "1px solid #0e82da"})
+                        that.markers.setLabel(label)
+
                         //给markers增加拖拽事件
                         that.markers.enableDragging()
-                        that.markers.addEventListener("dragend",function (s) {
+
+                        that.markers.addEventListener("dragstart",function (s) { //拖拽开始，隐藏markers标签
+                            label.hide();
+                        });
+
+                        that.markers.addEventListener("dragend",function (s) { //拖拽结束，显示markers标签
                             geoc.getLocation(s.point, function(rs){
                                 console.log(rs)
+                                label.show()
                                 that.center.lng = s.point.lng
                                 that.center.lat = s.point.lat
                                 that.address = rs.address
@@ -204,6 +218,19 @@
                         return false
                     }
 
+                    // 判断是否绑定车牌
+                    if(!that.userInfo.plate_num){
+                        that.$vux.alert.show({
+                            title: '提示',
+                            content: '请先绑定车牌号',
+                            onHide()  {
+                                that.$router.push('/bindCarNum')
+                            }
+                        })
+                        return false
+                    }
+
+
                     let reqJson = {
                         lat : this.center.lat,
                         lng : this.center.lng,
@@ -220,8 +247,9 @@
                                 return false;
                             }
                             if(data.code === 202){
-                                that.$vux.toast.show({
-                                    text: '停车成功',
+                                that.$vux.alert.show({
+                                    title: '停车成功',
+                                    content : '停车期间若有交警执勤，系统将以短信提示和公众号推送提示通知您，请注意查收'
                                 })
                                 // 状态改为停车中
                                 this.userInfo.stop_car_status = 2;

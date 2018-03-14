@@ -87,6 +87,14 @@
         },
         mounted() {
 
+
+
+
+
+
+
+
+
         },
 
         methods: {
@@ -103,7 +111,7 @@
                             this.$vux.toast.show({
                                 text: '绑定成功',
                                 onHide () {
-                                    that.$router.go(-1)
+                                    that.$router.push('/stopCar')
                                 }
                             })
                         }else{

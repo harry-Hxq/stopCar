@@ -21,7 +21,7 @@
             <cell title="手机号码"  link="/bindMobile" is-link value="未绑定" v-if="!userInfo.mobile">
                 <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../images/icon/phone_20.png">
             </cell>
-            <cell title="手机号码"  :value="userInfo.mobile" v-if="userInfo.mobile">
+            <cell title="手机号码"  :value="userInfo.mobile" v-if="userInfo.mobile" link="/bindMobile" is-link>
                 <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../images/icon/phone_20.png">
             </cell>
         </group>
