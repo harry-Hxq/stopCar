@@ -76,13 +76,26 @@
                 map : {},
                 address : '',
                 userInfo : {},
+                markers : {}
             }
         },
-        mounted () {
+        created () {
             this.getUsers()
-            this.ready()
+//            this.ready()
         },
         methods: {
+            stopReady(){
+                var that = this;
+                that.address = that.userInfo.address
+                that.map = new BMap.Map('allmap')
+                let point = new BMap.Point(that.userInfo.lng, that.userInfo.lat)
+                that.map.centerAndZoom(point, 16)
+                var myIcon = new BMap.Icon("http://i4.bvimg.com/574778/07e14e989eafdd9d.png", new BMap.Size(30,30));
+
+                that.markers = new BMap.Marker(point,{icon:myIcon})
+                that.map.addOverlay(that.markers)
+                that.markers.setAnimation(BMAP_ANIMATION_BOUNCE);
+            },
             ready () {
                 var that = this;
                 that.$vux.toast.show({
@@ -94,9 +107,9 @@
                 that.map = new BMap.Map('allmap')
                 let point = new BMap.Point(that.center.lng, that.center.lat)
                 that.map.centerAndZoom(point, 10)
-                var geoc = new BMap.Geocoder();
-//                map.enableScrollWheelZoom(true)
-//                map.enableDoubleClickZoom(true)
+
+                var geoc = new BMap.Geocoder();  //位置转换
+
                 var geolocation = new BMap.Geolocation()
                 geolocation.getCurrentPosition((r) => {
                     if (r.point) {
@@ -112,17 +125,15 @@
                         that.center.lng = r.longitude
                         that.center.lat = r.latitude
 
-
-
                         var myIcon = new BMap.Icon("http://i4.bvimg.com/574778/07e14e989eafdd9d.png", new BMap.Size(30,30));
 
-                        let markers = new BMap.Marker(r.point,{icon:myIcon})
-                        that.map.addOverlay(markers)
-                        markers.setAnimation(BMAP_ANIMATION_BOUNCE);
-                        markers.enableDragging()
-                        markers.addEventListener("dragend",function (s) {
-//
-                            console.log(s)
+                        that.markers = new BMap.Marker(r.point,{icon:myIcon})
+                        that.map.addOverlay(that.markers)
+                        that.markers.setAnimation(BMAP_ANIMATION_BOUNCE);
+
+                        //给markers增加拖拽事件
+                        that.markers.enableDragging()
+                        that.markers.addEventListener("dragend",function (s) {
                             geoc.getLocation(s.point, function(rs){
                                 console.log(rs)
                                 that.center.lng = s.point.lng
@@ -131,10 +142,6 @@
                                 console.log(that.address)
                             });
                         });
-
-
-
-
 
                         that.map.panTo(r.point)
                         that.map.centerAndZoom(r.point, 16)
@@ -157,52 +164,17 @@
                 var geolocationControl = new BMap.GeolocationControl();
 
                 geolocationControl.addEventListener("locationSuccess", function(e){
-                    console.log(e)
-                    //先删除所有点
+//                    console.log(e)
+//                    //先删除所有点
                     let allOverlay = that.map.getOverlays();
                     console.log(allOverlay);
-                    for (let i = 0; i < allOverlay.length -1; i++){
-                        that.map.removeOverlay(allOverlay[i]);
-                    }
-
-//                    that.$vux.toast.show({
-//                        text: '定位成功',
-//                        type : 'text',
-//                        position : 'middle',
-//                        time : 2000
-//                    })
-                    console.log(e)
-                    console.log('定位成功')
-                    that.center.lng = e.point.lng
-                    that.center.lat =  e.point.lat
-                    var myIcon = new BMap.Icon("http://i4.bvimg.com/574778/07e14e989eafdd9d.png", new BMap.Size(30,30));
-
-                    let markers = new BMap.Marker(e.point,{icon:myIcon})
-                    that.map.addOverlay(markers)
-                    markers.setAnimation(BMAP_ANIMATION_BOUNCE);
-                    markers.enableDragging()
-
-                    markers.enableDragging()
-                    markers.addEventListener("dragend",function (s) {
-//
-                        console.log(s)
-                        geoc.getLocation(s.point, function(rs){
-                            console.log(rs)
-                            that.center.lng = s.point.lng
-                            that.center.lat = s.point.lat
-                            that.address = rs.address
-                            console.log(that.address)
-                        });
-                    });
-
-
-
-
-                    markers.setLabel('当前位置');
+                    that.map.removeOverlay(allOverlay[2]);  //删除定位的点
+                    that.markers.setPosition(e.point)
                     that.map.panTo(e.point)
                     that.map.centerAndZoom(e.point, 16)
                     console.log(that.center)
                     // 定位成功事件
+
                     var geoc = new BMap.Geocoder();
                     geoc.getLocation(e.point, function(rs){
                         console.log(rs)
@@ -219,6 +191,19 @@
             confrimStop(){
                 var that = this;
                 if(that.userInfo.is_vip){
+
+                    // 判断是否绑定手机
+                    if(!that.userInfo.mobile){
+                        that.$vux.alert.show({
+                            title: '提示',
+                            content: '请先绑定手机号',
+                            onHide()  {
+                                that.$router.push('/bindMobile')
+                            }
+                        })
+                        return false
+                    }
+
                     let reqJson = {
                         lat : this.center.lat,
                         lng : this.center.lng,
@@ -229,7 +214,7 @@
                             if(data.code === 200){
                                 that.$vux.alert.show({
                                     title: '停车无忧提醒您',
-                                    content: '当前位置有交警执勤，请勿停车',
+                                    content: '您当前停车位置可能有被贴罚单的风险，请您尽快挪车',
                                 })
                                 this.userInfo.stop_car_status = 2;
                                 return false;
@@ -240,6 +225,7 @@
                                 })
                                 // 状态改为停车中
                                 this.userInfo.stop_car_status = 2;
+                                that.markers.disableDragging()
                                 return false;
                             }
                             that.$vux.alert.show({
@@ -260,10 +246,22 @@
                 }
             },
             getUsers(){
+                var that = this;
                 return getUsers()
                     .then((data => {
                         if(data.code === 200) {
-                            this.userInfo = data.data
+                            that.userInfo = data.data
+                            if(that.userInfo.stop_car_status === 1){
+                                that.ready()
+                            }else{
+                                that.stopReady()
+                                if(that.userInfo.is_tip === 2){
+                                    that.$vux.alert.show({
+                                        title: '停车无忧提醒您',
+                                        content: '您当前停车位置 ('+that.userInfo.address+') 可能有被贴罚单的风险，请您尽快挪车',
+                                    })
+                                }
+                            }
                         }
                     }))
             },
@@ -271,13 +269,20 @@
                 this.$router.push('/uc')
             },
             endStopCar(){
+                var that = this
                 return endStopCar()
                     .then((data => {
                         if(data.code === 200) {
-                            this.$vux.toast.show({
+                            that.$vux.toast.show({
                                 text: '成功结束',
+                                time: 1000,
+                                onHide () {
+                                    that.userInfo.stop_car_status = 1
+                                    that.ready()
+                                }
                             })
-                            this.userInfo.stop_car_status = 1
+
+
                         }
                     }))
             }
