@@ -1,7 +1,11 @@
 <template>
     <div>
         <head-top ref="headtop"></head-top>
-
+        <div id="box">
+            <ul id="con1" ref="con1" :class="{anim:animate==true}">
+                <li v-for='item in items'>{{item.name}}</li>
+            </ul>
+        </div>
         <div class="userCard">
             <div class="userinfo">
                 <img :src="userInfo.headimg" alt="">
@@ -58,6 +62,7 @@
     import {getStore} from '../../config/mUtils'
     import {getUsers,pay,PayConfig,PayLocalOrder} from '../../service/getData'
     import navTab from '../../components/navTab'
+
     export default {
         data () {
             return {
@@ -67,13 +72,26 @@
                 confirmShow : false,
                 content : '',
                 deadline : 0,
+                animate:false,
+                items:[  //消息列表对应的数组
+                    {name:"恭喜车主闽F3***4在龙腾北路成功规避一张停车罚单"},
+                    {name:"恭喜车主闽F1***3在犀牛路成功规避一张停车罚单"},
+                    {name:"恭喜车主闽F6***0在龙岩大道成功规避一张停车罚单"},
+                    {name:"恭喜车主闽F5***9在龙腾中路成功规避一张停车罚单"},
+                    {name:"恭喜车主闽FB***1在石锣鼓北路成功规避一张停车罚单"},
+                    {name:"恭喜车主闽F3***7在龙川西路成功规避一张停车罚单"},
+                    {name:"恭喜车主闽F1***9在登高西路成功规避一张停车罚单"},
+                    {name:"恭喜车主闽F8***2在小溪路成功规避一张停车罚单"},
+                    {name:"恭喜车主闽F2***9在黉门路成功规避一张停车罚单"},
+                    {name:"恭喜车主闽F0***3在莲庄北路成功规避一张停车罚单"},
+                ]
             }
         },
         components: { Divider, Card,navTab,Confirm},
         computed: {
-
         },
         created() {
+            setInterval(this.scroll,2000) // 在钩子函数中调用我在method 里面写的scroll()方法，注意此处不要忘记加this,我在这个位置掉了好几次坑，都是因为忘记写this。
             this.getUsers()
         },
         activated(){
@@ -82,6 +100,19 @@
         mounted() {
         },
         methods: {
+            scroll(){
+                let con1 = this.$refs.con1;
+                con1.style.marginTop='-30px';
+                this.animate=!this.animate;
+                var that = this; // 在异步函数中会出现this的偏移问题，此处一定要先保存好this的指向
+                setTimeout(function(){
+                    that.items.push(that.items[0]);
+                    that.items.shift();
+                    con1.style.marginTop='0px';
+                    that.animate=!that.animate;  // 这个地方如果不把animate 取反会出现消息回滚的现象，此时把ul 元素的过渡属性取消掉就可以完美实现无缝滚动的效果了
+                },500)
+            },
+
             applyRefund(){
                 console.log(232)
                 if(this.userInfo.is_vip){
@@ -94,6 +125,8 @@
                         title:"停车无忧",
                         content: '您不是vip用户',
                     })
+
+
                 }
             },
 
@@ -159,5 +192,27 @@
         width: 104px;
         height: 26px;
         color: wheat;
+    }
+    #box{
+        width: 99%;
+        height: 32px;
+        line-height: 30px;
+        overflow: hidden;
+        border: 1px solid #0e82da;
+        -webkit-transition: all 1s;
+        transition: all 1s;
+        font-size: 1rem;
+    }
+    #box ul{
+        text-align: center;
+        font-size: 0.8em;
+    }
+    .anim{
+        transition: all 1s;
+    }
+    #con1 li{
+        list-style: none;
+        line-height: 30px;
+        height: 30px;
     }
 </style>

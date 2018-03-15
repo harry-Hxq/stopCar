@@ -5,6 +5,7 @@
              <span >{{userInfo.username}}</span>
             <img :src="userInfo.headimg" alt="" width="60px">
         </div>
+
         <group>
             <cell title="我的车牌"  value="未绑定" link="/bindCarNum" v-if="!userInfo.plate_num" is-link>
                 <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../images/icon/car_num_20.png">
