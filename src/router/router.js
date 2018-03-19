@@ -7,7 +7,7 @@ const stopRecord = r => require.ensure([], () => r(require('../page/stopRecord/s
 const tipLog = r => require.ensure([], () => r(require('../page/tipLog/tipLog')), 'tipLog')
 const contact = r => require.ensure([], () => r(require('../page/contact/contact')), 'contact')
 const help = r => require.ensure([], () => r(require('../page/help/help')), 'help')
-const stopCar = r => require.ensure([], () => r(require('../page/stopCar/stopCar4')), 'stopCar')
+const stopCar = r => require.ensure([], () => r(require('../page/stopCar/stopCar')), 'stopCar')
 const getLocation = r => require.ensure([], () => r(require('../page/getLocation/getLocation')), 'getLocation')
 const becomeMember = r => require.ensure([], () => r(require('../page/becomeMember/becomeMember')), 'becomeMember')
 const pay = r => require.ensure([], () => r(require('../page/becomeMember/children/pay')), 'pay')
@@ -16,6 +16,8 @@ const bindMobile = r => require.ensure([], () => r(require('../page/bindMobile/b
 const bindCarNum = r => require.ensure([], () => r(require('../page/bindCarNum/bindCarNum')), 'bindCarNum')
 const memberText1 = r => require.ensure([], () => r(require('../page/memberText1/memberText1')), 'memberText1')
 const memberText2 = r => require.ensure([], () => r(require('../page/memberText2/memberText2')), 'memberText2')
+const ucenter = r => require.ensure([], () => r(require('../page/ucenter/ucenter')), 'ucenter')
+const motoMap = r => require.ensure([], () => r(require('../page/motoMap/motoMap')), 'motoMap')
 
 
 export default [{
@@ -129,7 +131,7 @@ export default [{
                 title: '会员',
                 auth: 'becomeMember',
                 hideBack: false,
-                keepAlive: true,
+                keepAlive: false,
             },
         },
         {
@@ -145,9 +147,9 @@ export default [{
             path: '/uc',
             component: uc,
             meta: {
-                title: '我的',
+                title: '会员中心',
                 // auth: 'login',
-                hideBack: false,
+                hideBack: true,
                 keepAlive: false,
             },
         },
@@ -164,7 +166,7 @@ export default [{
             path: '/memberText1',
             component: memberText1,
             meta: {
-                title: '会员福利',
+                title: '收费标准',
                 hideBack: false,
                 hideTab: true,
             },
@@ -175,6 +177,24 @@ export default [{
             meta: {
                 title: '会员专享',
                 hideBack: false,
+                hideTab: true,
+            },
+        },
+        {
+            path: '/ucenter',
+            component: ucenter,
+            meta: {
+                title: '个人信息',
+                hideBack: false,
+                hideTab: true,
+            },
+        },
+        {
+            path: '/motoMap',
+            component: motoMap,
+            meta: {
+                title: '摩托执勤',
+                hideBack: true,
                 hideTab: true,
             },
         }

@@ -101,3 +101,22 @@ export const sendVcode = (param) => fetch('/api/v1/user/send-vcode', {
 
 
 
+
+/**
+ * 提醒列表
+ */
+export const stopTipList = (param) => fetch('/api/v1/user/stop-tip-list', {
+    ...param
+}, 'post');
+
+
+
+/**
+ * 提醒列表
+ */
+export const motoList = (param) => fetch('/api/v1/user/moto-list', {
+    ...param
+}, 'post');
+
+
+

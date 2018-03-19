@@ -65,32 +65,8 @@
             this._wxpayConfig()
         },
         activated(){
-
-
         },
         mounted() {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         },
         methods: {
@@ -137,8 +113,8 @@
                             success(res) {
                                 if (res.errMsg === 'chooseWXPay:ok') {
                                     that.$vux.alert.show({
-                                        title: '提示',
-                                        content: '恭喜您成为vip会员，我们竭诚为您服务',
+                                        title: '停车无忧',
+                                        content: '恭喜您成为vip会员，我们将竭诚为您服务',
                                         onHide () {
                                             that.$router.go('-1')
                                         }
@@ -199,10 +175,12 @@
         border-color: #ff4a00;
     }
     .vipContent ul{
-        list-style: square inside url(../../../images/icon/right.png);
+        list-style: square url(../../../images/icon/right.png);
     }
     .vipContent ul li{
-        margin: 10px;
+        margin-left: 29px;
+        margin-top: 11px;
+        font-size: 1.01rem;
     }
     .confirmPay{
         background:#d9d9d9;

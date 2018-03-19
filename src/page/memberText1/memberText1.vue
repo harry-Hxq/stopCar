@@ -58,9 +58,11 @@
 
 <style>
     .memberContent1 ul{
-        list-style: square inside url(../../images/icon/right.png);
+        list-style: square url(../../images/icon/right.png);
     }
     .memberContent1 ul li{
-        margin: 10px;
+        margin-left: 29px;
+        margin-top: 11px;
+        font-size: 1.01rem;
     }
 </style>

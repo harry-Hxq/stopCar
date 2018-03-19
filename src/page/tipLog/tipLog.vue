@@ -1,33 +1,35 @@
 <template>
     <div>
         <head-top ref="headtop"></head-top>
-
-        <group v-for="item in list">
-            <cell title="状态" value="成功提醒" ></cell>
-            <cell-form-preview :list="[
-                    {label: '停车位置',value: item.location},
-                    {label: '时间',value: formatTime(item.create_time)}
-                    ]">
-            </cell-form-preview>
-        </group>
-
+            <group v-for="item in list">
+                <cell title="状态" value="成功提醒" ></cell>
+                <cell-form-preview :list="[
+                        {label: '停车位置',value: item.remark},
+                        {label: '时间',value: formatTime(item.create_time)}
+                        ]">
+                </cell-form-preview>
+            </group>
     </div>
 </template>
-
 
 <script>
     import {mapState} from 'vuex'
     import {formatDate,formatTime,getStore} from '../../config/mUtils'
-    import {XTable, LoadMore,CellFormPreview, Checker, CheckerItem,ButtonTab, ButtonTabItem, TransferDom, Popup,} from 'vux'
+    import {LoadMore,CellFormPreview,Cell} from 'vux'
     import {tipLog} from '../../service/getData'
 
     export default {
         data () {
             return {
                 list: [],
+                scrollTop: 0,
+                onFetching: false,
+                bottomCount: 20
             }
         },
-        components: {XTable, LoadMore,CellFormPreview, Checker, CheckerItem,ButtonTab, ButtonTabItem, TransferDom, Popup},
+        components: { LoadMore,CellFormPreview,Cell},
+
+
         computed: {
 
         },
@@ -37,14 +39,10 @@
         activated(){
 
         },
-        mounted() {
 
-        },
         methods: {
             formatTime,
-
             tipLog(){
-
                 return tipLog()
                     .then((data) => {
                         if(data.code === 200){
