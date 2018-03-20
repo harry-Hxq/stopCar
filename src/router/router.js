@@ -18,6 +18,9 @@ const memberText1 = r => require.ensure([], () => r(require('../page/memberText1
 const memberText2 = r => require.ensure([], () => r(require('../page/memberText2/memberText2')), 'memberText2')
 const ucenter = r => require.ensure([], () => r(require('../page/ucenter/ucenter')), 'ucenter')
 const motoMap = r => require.ensure([], () => r(require('../page/motoMap/motoMap')), 'motoMap')
+const routeList = r => require.ensure([], () => r(require('../page/routeList/routeList')), 'routeList')
+const routeDot = r => require.ensure([], () => r(require('../page/routeDot/routeDot')), 'routeDot')
+const explain = r => require.ensure([], () => r(require('../page/explain/explain')), 'explain')
 
 
 export default [{
@@ -195,6 +198,33 @@ export default [{
             meta: {
                 title: '摩托执勤',
                 hideBack: true,
+                hideTab: true,
+            },
+        },
+        {
+            path: '/routeList',
+            component: routeList,
+            meta: {
+                title: '执勤点',
+                hideBack: true,
+                hideTab: true,
+            },
+        },
+        {
+            path: '/routeDot',
+            component: routeDot,
+            meta: {
+                title: '执勤点',
+                hideBack: false,
+                hideTab: true,
+            },
+        },
+        {
+            path: '/explain',
+            component: explain,
+            meta: {
+                title: '使用说明',
+                hideBack: false,
                 hideTab: true,
             },
         }
