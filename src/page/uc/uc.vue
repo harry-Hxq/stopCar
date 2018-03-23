@@ -72,7 +72,7 @@
 
 
         <group>
-            <cell title="摩托执勤"  link="/motoMap" is-link >
+            <cell title="摩托管制"  link="/motoMap" is-link >
                 <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../../images/icon/ucenter_active.png">
             </cell>
         </group>

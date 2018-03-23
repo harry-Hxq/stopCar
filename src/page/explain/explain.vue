@@ -3,29 +3,21 @@
         <head-top ref="headtop"></head-top>
 
 
-        <div class="memberContent2">
-            <!--<h3>关于小车</h3>-->
+        <div class="explain">
             <ul>
-                <li>内部优势，实时得知交警正在管制的路段或即将管制的路段，随时掌握动向。</li>
-                <li>有效的规避违停罚单，省时省钱。</li>
-                <li>若有交警正在您的停车位置附近管制，在即将贴罚单前，平台会通过微信公众号和短信发送提醒通知。</li>
-                <li>按提醒次数收费，经济划算。</li>
-                <li>随时随地无忧停放，车主无忧。</li>
+                <li>停车无忧提供的服务内容分为小车管制点与摩托管制点两个部分。</li>
+                <li>进入［首页］可选择查看小车管制点与摩托管制点。（位置有地图标注）</li>
+                <li>每日实时更新地点和时间（摩托车一般是早上更新 小车是晚上更新）若有调整，则以平台更新为准。</li>
+                <li>这两个服务内容相信粉丝们可以想到的。</li>
             </ul>
-
-            <!--<h3>关于摩托</h3>-->
-            <!--<ul>-->
-                <!--<li>骑车出门，只需点开地图即可掌握管制地点和时间。</li>-->
-            <!--</ul>-->
-
         </div>
 
-        <!--<h1>会员专享</h1>-->
     </div>
 </template>
 
 
 <script>
+
     import {mapState} from 'vuex'
     import {getStore} from '../../config/mUtils'
     export default {
@@ -42,12 +34,12 @@
         },
         created() {
 
-        },
+            },
         activated(){
 
         },
         mounted() {
-
+            this.$refs.headtop.rightTitle = ''
         },
         methods: {
             logout() {
@@ -59,18 +51,24 @@
 </script>
 
 <style>
-    .memberContent2 ul{
+
+
+    .explain {
+        padding: 13px;
+        border: 4px solid #0e82da;
+        margin: 22px;
+        border-radius: 10px;
+    }
+    .explain ul{
         list-style: square url(../../images/icon/right.png);
         margin-top: 10px;
     }
-    .memberContent2 ul li{
+    .explain ul li{
         margin-left: 29px;
         margin-top: 11px;
         font-size: 1.02rem;
-
-
     }
-    .memberContent2 h3{
+    .explain h3{
         text-align: center;
         margin-top: 10px;
     }

@@ -23,10 +23,12 @@
         // name: 'tabbar',
         data () {
             return {
-                rightTitle: '',
-                rightUrl: '',
+                rightTitle: '使用说明',
+                rightUrl: '/explain',
                 loginFund: false,
             }
+
+
         },
         components: {
             XHeader,

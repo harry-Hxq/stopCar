@@ -120,3 +120,21 @@ export const motoList = (param) => fetch('/api/v1/user/moto-list', {
 
 
 
+/**
+ * 获取摩托车/小车管制列表
+ */
+export const routeList = (param) => fetch('/api/v1/user/route-list', {
+    ...param
+}, 'get');
+
+
+
+/**
+ * 获取摩托车/小车管制点
+ */
+export const routeDot = (param) => fetch('/api/v1/user/route-dot', {
+    ...param
+}, 'get');
+
+
+

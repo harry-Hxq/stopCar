@@ -249,7 +249,7 @@
                             if(data.code === 202){
                                 that.$vux.alert.show({
                                     title: '停车成功',
-                                    content : '停车期间若有交警执勤，系统将以短信提示和公众号推送提示通知您，请注意查收'
+                                    content : '停车期间若有交警管制，系统将以短信提示和公众号推送提示通知您，请注意查收'
                                 })
                                 // 状态改为停车中
                                 this.userInfo.stop_car_status = 2;
