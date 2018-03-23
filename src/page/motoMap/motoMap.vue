@@ -4,7 +4,7 @@
 
         <div id="allmap" class="allmap"></div>
         <div class="stoping_moto" >
-            <p><img src="http://i1.bvimg.com/574778/76ef65ea3344b0b7.png" alt=""><span>头像表示摩托车执勤点，点击可查看执勤时间，每日更新.</span></p>
+            <p><img src="http://i1.bvimg.com/574778/76ef65ea3344b0b7.png" alt=""><span>头像表示摩托车管制点，点击可查看管制时间，每日更新.</span></p>
         </div>
         <!--<button class="confirmButton" @click="confrimStop" v-if="userInfo.stop_car_status === 1">确认停车</button>-->
         <!--<img class="ucenter" @click="goUc" src="../../images/icon/ucenter_active.png" alt="">-->
@@ -94,7 +94,7 @@
 
             showDetails(id){
                 this.$vux.toast.show({
-                    text : '执勤时间：'+this.motoPoints[id].datetime,
+                    text : '管制时间：'+this.motoPoints[id].datetime,
                     type : 'text',
                     time : 3000,
                 })

@@ -4,12 +4,14 @@
 
         <div id="allmap" class="allmap"></div>
         <div class="stoping_moto" >
-            <p><img src="http://i1.bvimg.com/574778/76ef65ea3344b0b7.png" alt=""><span>头像表示摩托车执勤点，点击可查看执勤时间，每日更新.</span></p>
+            <p><img :src="iconUrl" alt=""><span>图标表示{{car_name}}管制点，实时更新. </span></p>
         </div>
         <!--<button class="confirmButton" @click="confrimStop" v-if="userInfo.stop_car_status === 1">确认停车</button>-->
         <!--<img class="ucenter" @click="goUc" src="../../images/icon/ucenter_active.png" alt="">-->
 
     </div>
+
+
 </template>
 
 <style>
@@ -47,21 +49,32 @@
         data () {
             return {
                 mapping : mapping,
-                type: 'tab',
                 address_detail: null,
                 center: {lng: 117, lat: 25},
                 map : {},
                 address : '',
                 userInfo : {},
                 markers : {},
-                motoPoints : {}
+                motoPoints : {},
+                type : 1,
+                iconUrl : '',
+                car_name : '',
+                update_time : ''
             }
         },
         created () {
             let route_date = this.$route.query.route_date
-            let type = this.$route.query.type
-            this.routeDot(route_date,type)
-//            this.ready()
+            this.type = this.$route.query.type
+            if(this.type == 2){
+                this.iconUrl = 'http://i2.bvimg.com/574778/acea25bfc761dbd2.png';
+                this.car_name = '小车'
+                this.update_time = '更新时间为上午九点'
+            }else{
+                this.iconUrl = 'http://i1.bvimg.com/574778/76ef65ea3344b0b7.png';
+                this.car_name = '摩托车'
+                this.update_time = '更新时间为晚上八点'
+            }
+            this.routeDot(route_date,this.type )
         },
         methods: {
             ready () {
@@ -73,8 +86,8 @@
                 console.log(that.motoPoints[0].longitude)
                 let motoPoint = {};
                 let marker = {};
-
-                var myIcon = new BMap.Icon("http://i1.bvimg.com/574778/76ef65ea3344b0b7.png", new BMap.Size(40,40));
+                console.log(this.type)
+                var myIcon = new BMap.Icon(this.iconUrl, new BMap.Size(40,40));
 
                 //设置标签
 
@@ -83,18 +96,21 @@
                     motoPoint = new BMap.Point(that.motoPoints[i].longitude,that.motoPoints[i].latitude)
                     marker = new BMap.Marker(motoPoint,{icon:myIcon});
 
-                    label = new BMap.Label(i,{offset:new BMap.Size(20,-16)});
+                    label = new BMap.Label(this.mapping.route_time_type[that.motoPoints[i].time_type],{offset:new BMap.Size(20,-16)});
+                    label.setStyle({ color : "#0e82da", fontSize : "15px" ,borderRadius : "7px",border : "1px solid #0e82da"})
                     marker.setLabel(label)
+                    label.show()
                     that.map.addOverlay(marker)
-                    label.hide()
-                    marker.addEventListener('click',function(){
-                        that.showDetails(i)
+
+                    marker.addEventListener('click',function(e){
+//                        that.showDetails(i)
                     })
                 }
             },
             showDetails(id){
+                console.log(this.motoPoints);
                 this.$vux.toast.show({
-                    text : '执勤时间：'+motoPoints[id].time_type,
+                    text : '管制时间：'+this.mapping.route_time_type[this.motoPoints[id].time_type],
                     type : 'text',
                     time : 3000,
                 })

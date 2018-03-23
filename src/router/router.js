@@ -196,7 +196,7 @@ export default [{
             path: '/motoMap',
             component: motoMap,
             meta: {
-                title: '摩托执勤',
+                title: '摩托管制',
                 hideBack: true,
                 hideTab: true,
             },
@@ -205,7 +205,7 @@ export default [{
             path: '/routeList',
             component: routeList,
             meta: {
-                title: '执勤点',
+                title: '管制',
                 hideBack: true,
                 hideTab: true,
             },
@@ -214,7 +214,7 @@ export default [{
             path: '/routeDot',
             component: routeDot,
             meta: {
-                title: '执勤点',
+                title: '管制点',
                 hideBack: false,
                 hideTab: true,
             },

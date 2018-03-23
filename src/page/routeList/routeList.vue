@@ -11,14 +11,15 @@
                         <div class="tab-swiper vux-center">
                             <group>
                                 <div v-for="item in route_list" v-if="item.type==1">
-                                    <cell v-if="item.is_news === 1" :title="formatDate(item.route_date)+mapping.route_type[item.type]+'执勤点'"
+                                    <cell v-if="item.is_news === 1" :title="formatDate(item.route_date)+mapping.route_type[item.type]+'管制点'"
                                           :link="{path:'/routeDot', query:{route_date:item.route_date,type:item.type}}"
                                           is-link >
                                         <div ><span style="color: red">点击查看</span></div>
                                     </cell>
-                                    <cell v-if="item.is_news === 0" :title="formatDate(item.route_date)+mapping.route_type[item.type]+'执勤点'"
+                                    <cell v-if="item.is_news === 0" @click.native="timeOut" :title="formatDate(item.route_date)+mapping.route_type[item.type]+'管制点'"
                                           is-link value="已过期">
                                     </cell>
+
                                 </div>
                             </group>
                         </div>
@@ -27,12 +28,12 @@
                         <div class="tab-swiper vux-center">
                             <group>
                                 <div v-for="item in route_list" v-if="item.type==2">
-                                    <cell v-if="item.is_news === 1"  :title="formatDate(item.route_date)+mapping.route_type[item.type]+'执勤点'"
+                                    <cell v-if="item.is_news === 1"  :title="formatDate(item.route_date)+mapping.route_type[item.type]+'管制点'"
                                           :link="{path:'/routeDot', query:{route_date:item.route_date,type:item.type}}"
                                           is-link >
                                         <div ><span style="color: red">点击查看</span></div>
                                     </cell>
-                                    <cell v-if="item.is_news === 0" :title="formatDate(item.route_date)+mapping.route_type[item.type]+'执勤点'"
+                                    <cell v-if="item.is_news === 0" @click.native="timeOut"  :title="formatDate(item.route_date)+mapping.route_type[item.type]+'管制点'"
                                           is-link value="已过期">
                                     </cell>
                                 </div>
@@ -57,8 +58,8 @@
         data () {
             return {
                 mapping : mapping,
-                list2 : ['摩托执勤', '小车执勤'],
-                demo2: '摩托执勤',
+                list2 : ['摩托管制', '小车管制'],
+                demo2: '摩托管制',
                 index: 0,
                 route_list : []
 
@@ -101,6 +102,12 @@
                             this.route_list = data.data
                         }
                     }))
+            },
+            timeOut(){
+                this.$vux.alert.show({
+                    title:"提示",
+                    content: '此条提示信息已过期。',
+                })
             },
 
         }

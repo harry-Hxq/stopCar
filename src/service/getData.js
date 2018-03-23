@@ -121,7 +121,7 @@ export const motoList = (param) => fetch('/api/v1/user/moto-list', {
 
 
 /**
- * 获取摩托车/小车执勤列表
+ * 获取摩托车/小车管制列表
  */
 export const routeList = (param) => fetch('/api/v1/user/route-list', {
     ...param
@@ -130,7 +130,7 @@ export const routeList = (param) => fetch('/api/v1/user/route-list', {
 
 
 /**
- * 获取摩托车/小车执勤点
+ * 获取摩托车/小车管制点
  */
 export const routeDot = (param) => fetch('/api/v1/user/route-dot', {
     ...param
