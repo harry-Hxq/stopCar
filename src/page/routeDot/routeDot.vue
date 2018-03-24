@@ -66,11 +66,11 @@
             let route_date = this.$route.query.route_date
             this.type = this.$route.query.type
             if(this.type == 2){
-                this.iconUrl = 'http://i2.bvimg.com/574778/acea25bfc761dbd2.png';
+                this.iconUrl = 'http://api.xltcwy.cn/storage/image/201803/1521788725315.png';
                 this.car_name = '小车'
                 this.update_time = '更新时间为上午九点'
             }else{
-                this.iconUrl = 'http://i1.bvimg.com/574778/76ef65ea3344b0b7.png';
+                this.iconUrl = 'http://api.xltcwy.cn/storage/image/201803/1521788669407.png';
                 this.car_name = '摩托车'
                 this.update_time = '更新时间为晚上八点'
             }
