@@ -1,7 +1,7 @@
 <template>
     <header v-if="headerShow">
         <x-header slot="header"
-                  style="width:100%;position:absolute;left:0;top:0;z-index:100;background:#0e82da"
+                  style="width:100%;position:absolute;left:0;top:0;z-index:100;background: rgb(82, 175, 36);"
                   :left-options="leftOptions"
                   :right-options="rightOptions"
                   :title="title">
@@ -23,8 +23,8 @@
         // name: 'tabbar',
         data () {
             return {
-                rightTitle: '使用说明',
-                rightUrl: '/explain',
+                rightTitle: '',
+                rightUrl: '',
                 loginFund: false,
             }
 

@@ -1,14 +1,13 @@
 <template>
 	<div class="fullScreen">
-
+        <head-top></head-top>
         <view-box ref="viewBox" body-padding-top="46px" body-padding-bottom="55px">
             <keep-alive>
                 <router-view v-if="$route.meta.keepAlive"></router-view>
             </keep-alive>
             <router-view v-if="!$route.meta.keepAlive"></router-view>
         </view-box>
-
-
+        <nav-tab></nav-tab>
         <loading v-model="isLoading"></loading>
     </div>
 </template>
@@ -19,6 +18,8 @@ import {mapState, mapMutations, mapActions} from 'vuex'
 import {setStore, getStore, removeStore} from './config/mUtils'
 import {getUser} from './service/getData'
 import {baseUrl, interfaceUrl} from './config/env'
+import navTab from './components/navTab'
+import headTop from './components/headTop'
 
 export default {
     data() {
@@ -43,7 +44,7 @@ export default {
     mounted() {
     },
     components: {
-        ViewBox,
+        ViewBox,navTab,headTop
     },
     computed:{
         ...mapState({

@@ -240,7 +240,7 @@
                         .then((data => {
                             if(data.code === 200){
                                 that.$vux.alert.show({
-                                    title: '停车无忧提醒您',
+                                    title: '行车无忧提醒您',
                                     content: '您当前停车位置可能有被贴罚单的风险，请您尽快挪车',
                                 })
                                 this.userInfo.stop_car_status = 2;
@@ -264,7 +264,7 @@
                         }))
                 }else{
                     that.$vux.alert.show({
-                        title: '停车无忧提醒您',
+                        title: '行车无忧提醒您',
                         content: '您不是vip会员，无法享有此服务，请先成为vip会员',
                         onHide () {
                             window.location.href = '/becomeMember/pay'
@@ -285,7 +285,7 @@
                                 that.stopReady()
                                 if(that.userInfo.is_tip === 2){
                                     that.$vux.alert.show({
-                                        title: '停车无忧提醒您',
+                                        title: '行车无忧提醒您',
                                         content: '您当前停车位置 ('+that.userInfo.address+') 可能有被贴罚单的风险，请您尽快挪车',
                                     })
                                 }

@@ -131,12 +131,12 @@
                 console.log(232)
                 if(this.userInfo.is_vip){
                     this.$vux.alert.show({
-                        title:"停车无忧",
+                        title:"行车无忧",
                         content: '经检测您的账户未到结算周期，暂时无法退款',
                     })
                 }else{
                     this.$vux.alert.show({
-                        title:"停车无忧",
+                        title:"行车无忧",
                         content: '您不是vip用户',
                     })
                 }

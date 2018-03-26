@@ -137,4 +137,12 @@ export const routeDot = (param) => fetch('/api/v1/user/route-dot', {
 }, 'get');
 
 
+/**
+ * 用户领取体验天数
+ */
+export const getDays = (param) => fetch('/api/v1/user/get-days', {
+    ...param
+}, 'get');
+
+
 

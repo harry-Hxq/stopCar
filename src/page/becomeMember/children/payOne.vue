@@ -1,56 +1,12 @@
 <template>
     <div>
 
-        <!--<div class="vipContent">-->
-            <!--<ul>-->
-                <!--<li>实时得知交警正在管制的路段或即将管制的路段，随时掌握动向。</li>-->
-                <!--<li>有效的规避违停罚单，省时省钱。</li>-->
-                <!--<li>按提醒次数收费，经济划算。</li>-->
-                <!--<li>随时随地无忧停放，车主无忧。</li>-->
-            <!--</ul>-->
-        <!--</div>-->
-
-        <div class="checkWapper">
-            <checker
-                    type="radio"
-                    v-model="moneyType"
-                    default-item-class="demo5-item"
-                    selected-item-class="demo5-item-selected"
-                    :radio-required="true"
-                    value="1"
-            >
-                <checker-item @click.native="changeMoney(1)" :key="1" :value="1">1个月9.9元</checker-item>
-                <checker-item @click.native="changeMoney(2)" :key="2" :value="2">3个月19.9元</checker-item>
-                <checker-item @click.native="changeMoney(3)" :key="3" :value="3">6个月29.9元</checker-item>
-                <checker-item @click.native="changeMoney(4)" :key="4" :value="4">12个月49.9元</checker-item>
-            </checker>
-        </div>
-
-
-
-        <div class="confirmPay">
-            <p>应付金额:    <span>{{money}} </span>元</p>
-            <button @click="_getWxpayData">提交订单</button>
-        </div>
-        <!--<div slot="content" class="card-padding">-->
-            <!--<p style="font-size:14px;line-height:1.5;">会员年费为118元一年，低于50次提醒按2元一次收费，没有提醒不收费。在停车期间若无交警贴罚单，不提醒，也不收费，无限使用次数，我们主要是按提醒次数来收费</p>-->
-        <!--</div>-->
-        <!--<box gap="10px 10px">-->
-            <!--<x-button type="primary" @click.native="">成为会员</x-button>-->
-        <!--</box>-->
-        <!--<nav-tab></nav-tab>-->
-
     </div>
 </template>
 
 
-
-
-
-
-
 <script>
-    import { Divider, Card ,Checker, CheckerItem} from 'vux'
+    import {getStore} from '../../../config/mUtils'
     import {getUsers,pay,PayConfig,PayLocalOrder} from '../../../service/getData'
     const wx = require('weixin-js-sdk')
     export default {
@@ -64,7 +20,6 @@
                 money : 9.9
             }
         },
-        components: { Divider, Card,Checker, CheckerItem},
         computed: {
 
         },
@@ -91,7 +46,7 @@
                 console.log(e)
             },
             _getWxpayData() {
-                return PayLocalOrder({money_type:this.moneyType}).then((res) => {
+                return PayLocalOrder({money_type:5}).then((res) => {
                     if(res.code === 200){
                         let order_id = res.data
                         wx.ready(() => {
@@ -114,13 +69,10 @@
                             signature: data.signature,
                             jsApiList: ['chooseWXPay']
                         })
-//                        this._getWxpayData()
+                        this._getWxpayData()
                     }
                 })
             },
-
-
-
             _setWxpayInfo(order_id) {
                 let that = this;
                 return pay({order_id:order_id}).then((result) => {
@@ -183,74 +135,5 @@
 </script>
 
 <style>
-    .demo5-item {
-        width: 38%;
-        height: 49px;
-        line-height: 46px;
-        text-align: center;
-        border-radius: 3px;
-        border: 1px solid #52af24;
-        background-color: #52af24;
-        margin: 6px;
-        color:#ffffff;
-    }
-    .demo5-item-selected {
-        background:  #52af24 url(../../../images/icon/active.png) no-repeat right bottom;
-        border: 3px solid #ffbe00;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-    .vipContent ul{
-        list-style: square url(../../../images/icon/right.png);
-    }
-    .vipContent ul li{
-        margin-left: 29px;
-        margin-top: 11px;
-        font-size: 1.01rem;
-    }
-    .confirmPay{
-        background:#d9d9d9;
-        width: 100%;
-        position: fixed;
-        bottom: 0;
-        text-align: center;
-    }
-    .confirmPay button{
-        width: 292px;
-        height: 40px;
-        background: #0bb20c;
-        border-radius: 3px;
-        color: #ffffff;
-        margin: 12px;
-    }
-    .confirmPay p{
-        margin: 2px;
-    }
-    .confirmPay span{
-        color: red;
-    }
-    .checkWapper{
-        text-align: center;
-        margin-top: 36px;
-    }
 </style>

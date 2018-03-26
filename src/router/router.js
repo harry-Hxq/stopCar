@@ -11,6 +11,7 @@ const stopCar = r => require.ensure([], () => r(require('../page/stopCar/stopCar
 const getLocation = r => require.ensure([], () => r(require('../page/getLocation/getLocation')), 'getLocation')
 const becomeMember = r => require.ensure([], () => r(require('../page/becomeMember/becomeMember')), 'becomeMember')
 const pay = r => require.ensure([], () => r(require('../page/becomeMember/children/pay')), 'pay')
+const payOne = r => require.ensure([], () => r(require('../page/becomeMember/children/payOne')), 'payOne')
 const login = r => require.ensure([], () => r(require('../page/login/login')), 'login')
 const bindMobile = r => require.ensure([], () => r(require('../page/bindMobile/bindMobile')), 'bindMobile')
 const bindCarNum = r => require.ensure([], () => r(require('../page/bindCarNum/bindCarNum')), 'bindCarNum')
@@ -21,7 +22,7 @@ const motoMap = r => require.ensure([], () => r(require('../page/motoMap/motoMap
 const routeList = r => require.ensure([], () => r(require('../page/routeList/routeList')), 'routeList')
 const routeDot = r => require.ensure([], () => r(require('../page/routeDot/routeDot')), 'routeDot')
 const explain = r => require.ensure([], () => r(require('../page/explain/explain')), 'explain')
-
+const opinion = r => require.ensure([], () => r(require('../page/opinion/opinion')), 'opinion')
 
 export default [{
     path: '/',
@@ -141,9 +142,21 @@ export default [{
             path: '/becomeMember/pay', // 支付x
             component: pay,
             meta: {
-                title: '购买vip',
+                title: '购买会员',
                 hideBack: false,
-                keepAlive: false,
+                keepAlive: true,
+                hideTab: true,
+            },
+        },
+        {
+            path: '/becomeMember/payOne', // 支付x
+            component: payOne,
+            meta: {
+                title: '支付1元',
+                hideBack: false,
+                keepAlive: true,
+                hideTab: true,
+
             },
         },
         {
@@ -205,9 +218,9 @@ export default [{
             path: '/routeList',
             component: routeList,
             meta: {
-                title: '管制',
+                title: '管制点',
                 hideBack: true,
-                hideTab: true,
+                hideTab: false,
             },
         },
         {
@@ -224,6 +237,15 @@ export default [{
             component: explain,
             meta: {
                 title: '使用说明',
+                hideBack: true,
+                hideTab: false,
+            },
+        },
+        {
+            path: '/opinion',
+            component: opinion,
+            meta: {
+                title: '意见反馈',
                 hideBack: false,
                 hideTab: true,
             },
